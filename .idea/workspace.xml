@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="Aggiunta matrice mappatura casi d'uso">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requisiti.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="definizione-progetto" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;osama.fth&quot;,
+      &quot;fullname&quot;: &quot;Osama Foutih&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.di.unipmn.it/osama.fth/Foutih_Bellotti_Negrini.git&quot;,
+    &quot;second&quot;: &quot;91e20c9a-8dc0-4525-8466-7c2741e3dc53&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="36smJKJwLBZmb2Nmm2xC8ozMoXy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ridefinizione-progetto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/word" />
+      <recent name="$PROJECT_DIR$/doc" />
+      <recent name="$PROJECT_DIR$/Requisiti" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="" />
+      <created>1765803579970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765803579970</updated>
+      <workItem from="1765803581183" duration="155000" />
+      <workItem from="1765803744945" duration="4902000" />
+      <workItem from="1765812071320" duration="43000" />
+      <workItem from="1765818194764" duration="4212000" />
+      <workItem from="1765973487111" duration="1041000" />
+      <workItem from="1766056525507" duration="50000" />
+      <workItem from="1766062081734" duration="5572000" />
+      <workItem from="1766408206690" duration="3980000" />
+      <workItem from="1766417759964" duration="3674000" />
+      <workItem from="1766425364216" duration="3569000" />
+      <workItem from="1766483132928" duration="2096000" />
+      <workItem from="1766493016578" duration="80000" />
+      <workItem from="1766498505542" duration="374000" />
+      <workItem from="1766499657301" duration="259000" />
+      <workItem from="1766578265332" duration="3346000" />
+      <workItem from="1766588077469" duration="3648000" />
+      <workItem from="1766657306655" duration="759000" />
+      <workItem from="1768402329308" duration="300000" />
+      <workItem from="1768402788404" duration="21000" />
+      <workItem from="1768402839054" duration="3109000" />
+      <workItem from="1768470402309" duration="1258000" />
+      <workItem from="1768474734250" duration="12603000" />
+      <workItem from="1768577486073" duration="2339000" />
+      <workItem from="1768635059407" duration="2070000" />
+    </task>
+    <task id="LOCAL-00001" summary="Aggiunta diagramma casi d'uso">
+      <option name="closed" value="true" />
+      <created>1765973644534</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765973644534</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Aggiunta descrizione casi d'uso">
+      <option name="closed" value="true" />
+      <created>1766067448032</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766067448032</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Aggiunta matrice mappatura casi d'uso">
+      <option name="closed" value="true" />
+      <created>1766412977439</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766412977439</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.md" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="ridefinizione-progetto" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Aggiunta diagramma casi d'uso" />
+    <MESSAGE value="Aggiunta descrizione casi d'uso" />
+    <MESSAGE value="Aggiunta matrice mappatura casi d'uso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta matrice mappatura casi d'uso" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
