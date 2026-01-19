@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="Aggiunta matrice mappatura casi d'uso">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requisiti.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/Documento_dei_Requisiti.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Documento_dei_Requisiti.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/Documento_di_Visione.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Documento_di_Visione.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/word/Documento dei Requisiti.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/word/Documento dei Requisiti.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/word/Documento di Visione.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/word/Documento di Visione.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +55,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ridefinizione-progetto&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;definizione-progetto&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini&quot;,
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
@@ -97,6 +101,7 @@
       <workItem from="1768474734250" duration="12603000" />
       <workItem from="1768577486073" duration="2339000" />
       <workItem from="1768635059407" duration="2070000" />
+      <workItem from="1768817655047" duration="458000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta diagramma casi d'uso">
       <option name="closed" value="true" />
