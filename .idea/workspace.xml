@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="Aggiunta matrice mappatura casi d'uso">
+    <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/dump_Database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/DatabaseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/LibroDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/UtenteDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/StatoUtente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/DatabaseConnectionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/LibroTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/Documento_dei_Requisiti.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Documento_dei_Requisiti.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/Documento_di_Visione.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Documento_di_Visione.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/word/Documento dei Requisiti.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/word/Documento dei Requisiti.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/word/Documento di Visione.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/word/Documento di Visione.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
@@ -41,34 +60,111 @@
     &quot;second&quot;: &quot;91e20c9a-8dc0-4525-8466-7c2741e3dc53&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="36smJKJwLBZmb2Nmm2xC8ozMoXy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;definizione-progetto&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "JUnit.CatalogoControllerTest.executor": "Run",
+    "JUnit.DatabaseConnectionTest (1).executor": "Run",
+    "JUnit.DatabaseConnectionTest.executor": "Run",
+    "JUnit.LibroTest.executor": "Run",
+    "JUnit.UtenteControllerTest.executor": "Run",
+    "JUnit.UtenteTest.executor": "Run",
+    "Maven.easybook [clean].executor": "Run",
+    "Maven.easybook [install].executor": "Run",
+    "Maven.easybook [test].executor": "Run",
+    "Maven.easybook [verify].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "definizione-progetto",
+    "last_opened_file_path": "/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "database.query.execution"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/doc/word" />
       <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$/Requisiti" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.easybook" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CatalogoControllerTest">
+    <configuration name="CatalogoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.CatalogoControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.DatabaseConnectionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibroTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.LibroTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtenteControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtenteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CatalogoControllerTest" />
+        <item itemvalue="JUnit.UtenteControllerTest" />
+        <item itemvalue="JUnit.UtenteTest" />
+        <item itemvalue="JUnit.LibroTest" />
+        <item itemvalue="JUnit.DatabaseConnectionTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -101,7 +197,11 @@
       <workItem from="1768474734250" duration="12603000" />
       <workItem from="1768577486073" duration="2339000" />
       <workItem from="1768635059407" duration="2070000" />
-      <workItem from="1768817655047" duration="458000" />
+      <workItem from="1768817655047" duration="934000" />
+      <workItem from="1768857261278" duration="424000" />
+      <workItem from="1768857825540" duration="358000" />
+      <workItem from="1768858204670" duration="51000" />
+      <workItem from="1769180825548" duration="7912000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta diagramma casi d'uso">
       <option name="closed" value="true" />
@@ -144,7 +244,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ridefinizione-progetto" />
+                        <option value="definizione-progetto" />
                       </list>
                     </value>
                   </entry>
