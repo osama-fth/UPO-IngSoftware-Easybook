@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test per il controller del catalogo libri (UC1).
+ * Test di integrazione per il controller del catalogo libri (UC1).
  */
 class CatalogoControllerTest {
 
@@ -21,65 +21,98 @@ class CatalogoControllerTest {
 
     @Test
     void testAggiungiLibro_Success() {
-        Libro libro = new Libro("TEST123", "Libro Test", "Autore Test", 3, 3);
+        String isbn = "978-8804668231";
+        Libro libro = new Libro(isbn, "Il nome della rosa", "Umberto Eco", 5, 5);
 
-        assertDoesNotThrow(() -> controller.aggiungiLibro(libro));
+        // Assicuriamoci che non esista prima del test
+        try {
+            controller.rimuoviLibro(isbn);
+        } catch (Exception ignored) {
+        }
 
-        Libro trovato = controller.cercaLibro("TEST123");
-        assertNotNull(trovato);
-        assertEquals("Libro Test", trovato.getTitolo());
+        assertDoesNotThrow(() -> controller.aggiungiLibro(libro), "L'aggiunta di un libro valido non dovrebbe lanciare eccezioni");
+
+        Libro trovato = controller.cercaLibro(isbn);
+        assertNotNull(trovato, "Il libro dovrebbe essere stato trovato nel DB");
+        assertEquals("Il nome della rosa", trovato.getTitolo());
 
         // Cleanup
-        controller.rimuoviLibro("TEST123");
+        controller.rimuoviLibro(isbn);
     }
 
     @Test
     void testAggiungiLibro_ISBNDuplicato() {
-        Libro libro1 = new Libro("DUP123", "Primo", "Autore", 1, 1);
-        Libro libro2 = new Libro("DUP123", "Secondo", "Altro", 1, 1);
+        String isbn = "978-0261102385"; // ISBN reale de "Il Signore degli Anelli"
+        Libro libro1 = new Libro(isbn, "Il Signore degli Anelli", "J.R.R. Tolkien", 3, 3);
+        Libro libro2 = new Libro(isbn, "Il Signore degli Anelli", "Tolkien", 1, 1); // Tentativo duplicato
+
+        // Pulizia preventiva
+        try {
+            controller.rimuoviLibro(isbn);
+        } catch (Exception ignored) {
+        }
 
         controller.aggiungiLibro(libro1);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
             controller.aggiungiLibro(libro2);
         });
 
-        assertTrue(exception.getMessage().contains("già presente"));
+        assertEquals("Libro con ISBN 978-0261102385 già presente nel catalogo.", e.getMessage());
 
         // Cleanup
-        controller.rimuoviLibro("DUP123");
+        controller.rimuoviLibro(isbn);
     }
 
     @Test
     void testModificaLibro_Success() {
-        Libro libro = new Libro("MOD123", "Originale", "Autore", 2, 2);
+        String isbn = "978-8806218294";
+        Libro libro = new Libro(isbn, "1984", "George Orwell", 10, 10);
+
+        // Pulizia preventiva
+        try {
+            controller.rimuoviLibro(isbn);
+        } catch (Exception ignored) {
+        }
+
         controller.aggiungiLibro(libro);
 
-        Libro modificato = new Libro("MOD123", "Modificato", "Nuovo Autore", 3, 3);
+        Libro modificato = new Libro(isbn, "1984 (Edizione Speciale)", "George Orwell", 12, 12);
         controller.modificaLibro(modificato);
 
-        Libro verificato = controller.cercaLibro("MOD123");
-        assertEquals("Modificato", verificato.getTitolo());
-        assertEquals("Nuovo Autore", verificato.getAutore());
+        // Assert
+        Libro verificato = controller.cercaLibro(isbn);
+        assertNotNull(verificato);
+        assertEquals("1984 (Edizione Speciale)", verificato.getTitolo());
+        assertEquals(12, verificato.getCopieTotali());
 
         // Cleanup
-        controller.rimuoviLibro("MOD123");
+        controller.rimuoviLibro(isbn);
     }
 
     @Test
     void testRimuoviLibro_ConPrestitiAttivi() {
-        Libro libro = new Libro("DEL123", "Da Eliminare", "Autore", 5, 3);
+        String isbn = "978-8807013939";
+        Libro libro = new Libro(isbn, "Seta", "Alessandro Baricco", 5, 3);
+
+        // Pulizia preventiva
+        try {
+            controller.rimuoviLibro(isbn);
+        } catch (Exception ignored) {
+        }
         controller.aggiungiLibro(libro);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            controller.rimuoviLibro("DEL123");
+
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            controller.rimuoviLibro(isbn);
         });
 
-        assertTrue(exception.getMessage().contains("copie in prestito"));
+        assertEquals("Impossibile eliminare: ci sono 2 copie in prestito.", e.getMessage());
 
-        // Cleanup (forza eliminazione)
-        Libro libero = new Libro("DEL123", "Da Eliminare", "Autore", 3, 3);
-        controller.modificaLibro(libero);
-        controller.rimuoviLibro("DEL123");
+        // Cleanup: Per eliminare, devo prima "restituire" le copie
+        Libro modificato = new Libro(isbn, "Seta", "Alessandro Baricco", 5, 5); // Ora disponibili = totali
+        controller.modificaLibro(modificato);
+
+        assertDoesNotThrow(() -> controller.rimuoviLibro(isbn));
     }
 }

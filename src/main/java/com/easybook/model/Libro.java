@@ -6,11 +6,15 @@ package com.easybook.model;
  * @author Foutih Osama 20054809
  */
 public class Libro {
-    private final String isbn;
-    private final String titolo;
-    private final String autore;
-    private final int copieTotali;
+    // Rimosso 'final' per permettere modifiche (UC1: Modifica Libro)
+    private String isbn;
+    private String titolo;
+    private String autore;
+    private int copieTotali;
     private int copieDisponibili;
+
+    public Libro() {
+    }
 
     public Libro(String isbn, String titolo, String autore, int copieTotali, int copieDisponibili) {
         this.isbn = isbn;
@@ -20,20 +24,38 @@ public class Libro {
         this.copieDisponibili = copieDisponibili;
     }
 
+    // Getter
     public String getIsbn() {
         return isbn;
+    }
+
+    // Setter
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitolo() {
         return titolo;
     }
 
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
     public String getAutore() {
         return autore;
     }
 
+    public void setAutore(String autore) {
+        this.autore = autore;
+    }
+
     public int getCopieTotali() {
         return copieTotali;
+    }
+
+    public void setCopieTotali(int copieTotali) {
+        this.copieTotali = copieTotali;
     }
 
     public int getCopieDisponibili() {

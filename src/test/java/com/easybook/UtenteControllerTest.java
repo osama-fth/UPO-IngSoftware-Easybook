@@ -22,63 +22,91 @@ class UtenteControllerTest {
 
     @Test
     void testRegistraUtente_Success() {
-        Utente utente = new Utente("TSTCF01H01L219A", "Nome", "Cognome", StatoUtente.ATTIVO, 0);
+        String cf = "RSSMRA85M01H501Z";
+        Utente utente = new Utente(cf, "Mario", "Rossi", StatoUtente.ATTIVO, 0);
 
-        assertDoesNotThrow(() -> controller.registraUtente(utente));
+        // Pulizia preventiva
+        try {
+            controller.rimuoviUtente(cf);
+        } catch (Exception ignored) {
+        }
 
-        Utente trovato = controller.cercaUtente("TSTCF01H01L219A");
-        assertNotNull(trovato);
-        assertEquals("Nome", trovato.getNome());
+        assertDoesNotThrow(() -> controller.registraUtente(utente), "La registrazione dovrebbe avvenire con successo");
 
-        // Cleanup
-        controller.rimuoviUtente("TSTCF01H01L219A");
+        Utente trovato = controller.cercaUtente(cf);
+        assertNotNull(trovato, "L'utente dovrebbe essere presente nel DB");
+        assertEquals("Mario", trovato.getNome());
+        assertEquals("Rossi", trovato.getCognome());
+
+        // Cleanup finale
+        controller.rimuoviUtente(cf);
     }
 
     @Test
     void testRegistraUtente_CFDuplicato() {
-        Utente utente1 = new Utente("DUPCF01H01L219A", "Primo", "Utente", StatoUtente.ATTIVO, 0);
-        Utente utente2 = new Utente("DUPCF01H01L219A", "Secondo", "Altro", StatoUtente.ATTIVO, 0);
+        String cf = "BNCGLI90A41F205X";
+        Utente utente1 = new Utente(cf, "Giulia", "Bianchi", StatoUtente.ATTIVO, 0);
+        Utente utente2 = new Utente(cf, "Giulia", "Bianchi", StatoUtente.ATTIVO, 0);
+
+        try {
+            controller.rimuoviUtente(cf);
+        } catch (Exception ignored) {
+        }
 
         controller.registraUtente(utente1);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
             controller.registraUtente(utente2);
         });
 
-        assertTrue(exception.getMessage().contains("già registrato"));
+        assertEquals("Utente con CF BNCGLI90A41F205X già registrato.", e.getMessage());
 
         // Cleanup
-        controller.rimuoviUtente("DUPCF01H01L219A");
+        controller.rimuoviUtente(cf);
     }
 
     @Test
     void testSospendiUtente() {
-        Utente utente = new Utente("SUSPCF01H01L219A", "Da Sospendere", "Cognome", StatoUtente.ATTIVO, 0);
+        String cf = "VRDLCU80A01H501W";
+        Utente utente = new Utente(cf, "Luca", "Verdi", StatoUtente.ATTIVO, 0);
+
+        try {
+            controller.rimuoviUtente(cf);
+        } catch (Exception ignored) {
+        }
         controller.registraUtente(utente);
 
-        controller.sospendiUtente("SUSPCF01H01L219A");
+        controller.sospendiUtente(cf);
 
-        Utente verificato = controller.cercaUtente("SUSPCF01H01L219A");
-        assertEquals("SOSPESO", verificato.getStato());
+        Utente verificato = controller.cercaUtente(cf);
+        assertEquals("SOSPESO", verificato.getStato(), "Lo stato dell'utente dovrebbe essere SOSPESO");
 
         // Cleanup
-        controller.rimuoviUtente("SUSPCF01H01L219A");
+        controller.rimuoviUtente(cf);
     }
 
     @Test
     void testRimuoviUtente_ConPrestitiAttivi() {
-        Utente utente = new Utente("DELCF01H01L219A", "Con Prestiti", "Cognome", StatoUtente.ATTIVO, 2);
+        String cf = "NRIFNC95E41H501Q";
+        Utente utente = new Utente(cf, "Francesca", "Neri", StatoUtente.ATTIVO, 2);
+
+        try {
+            controller.rimuoviUtente(cf);
+        } catch (Exception ignored) {
+        }
         controller.registraUtente(utente);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            controller.rimuoviUtente("DELCF01H01L219A");
+        // Tento di rimuovere: dovrebbe fallire perché ha libri in prestito
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            controller.rimuoviUtente(cf);
         });
 
-        assertTrue(exception.getMessage().contains("prestiti attivi"));
+        assertEquals("Impossibile eliminare: l'utente ha 2 prestiti attivi.", e.getMessage());
 
-        // Cleanup (forza eliminazione)
-        Utente libero = new Utente("DELCF01H01L219A", "Con Prestiti", "Cognome", StatoUtente.ATTIVO, 0);
-        controller.modificaUtente(libero);
-        controller.rimuoviUtente("DELCF01H01L219A");
+        // Cleanup: Per eliminare, devo azzerare i prestiti (simulo restituzione)
+        Utente utenteSenzaPrestiti = new Utente(cf, "Francesca", "Neri", StatoUtente.ATTIVO, 0);
+        controller.modificaUtente(utenteSenzaPrestiti);
+
+        assertDoesNotThrow(() -> controller.rimuoviUtente(cf), "Ora dovrebbe essere rimovibile");
     }
 }

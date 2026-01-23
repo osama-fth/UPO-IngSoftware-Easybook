@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * Controller per la gestione del catalogo libri (UC1).
+ *
+ * @author Foutih Osama 20054809
  */
 public class CatalogoController {
 

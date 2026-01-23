@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * Controller per la gestione dell'anagrafica utenti (UC2).
- * Implementa la logica di business senza dipendenze dalla GUI.
+ *
+ * @author Foutih Osama 20054809
  */
 public class UtenteController {
 
@@ -94,7 +95,7 @@ public class UtenteController {
     }
 
     /**
-     * Sospende un utente (es. per sanzioni non pagate).
+     * Sospende un utente (es. Per sanzioni non pagate).
      */
     public void sospendiUtente(String cf) {
         Utente utente = utenteDAO.findByCf(cf);

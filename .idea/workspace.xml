@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/doc/dump_Database.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/DatabaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/LibroDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/UtenteDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/StatoUtente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/DatabaseConnectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/LibroTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/57c0e7fa-bf71-456b-b0f4-88d678e09a30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/57c0e7fa-bf71-456b-b0f4-88d678e09a30.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easybook.db" beforeDir="false" afterPath="$PROJECT_DIR$/easybook.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/controller/CatalogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/controller/CatalogoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/controller/UtenteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/controller/UtenteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/easybook/CatalogoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/easybook/CatalogoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,10 +74,16 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.Main.executor": "Run",
     "JUnit.CatalogoControllerTest.executor": "Run",
+    "JUnit.CatalogoControllerTest.testAggiungiLibro_ISBNDuplicato.executor": "Run",
+    "JUnit.CatalogoControllerTest.testAggiungiLibro_Success.executor": "Run",
+    "JUnit.CatalogoControllerTest.testRimuoviLibro_ConPrestitiAttivi.executor": "Run",
     "JUnit.DatabaseConnectionTest (1).executor": "Run",
     "JUnit.DatabaseConnectionTest.executor": "Run",
     "JUnit.LibroTest.executor": "Run",
     "JUnit.UtenteControllerTest.executor": "Run",
+    "JUnit.UtenteControllerTest.testRegistraUtente_CFDuplicato.executor": "Run",
+    "JUnit.UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi.executor": "Run",
+    "JUnit.UtenteControllerTest.testSospendiUtente.executor": "Run",
     "JUnit.UtenteTest.executor": "Run",
     "Maven.easybook [clean].executor": "Run",
     "Maven.easybook [install].executor": "Run",
@@ -110,29 +111,11 @@
       <recent name="com.easybook" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CatalogoControllerTest">
+  <component name="RunManager" selected="JUnit.UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi">
     <configuration name="CatalogoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="easybook" />
       <option name="PACKAGE_NAME" value="com.easybook" />
       <option name="MAIN_CLASS_NAME" value="com.easybook.CatalogoControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DatabaseConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="easybook" />
-      <option name="PACKAGE_NAME" value="com.easybook" />
-      <option name="MAIN_CLASS_NAME" value="com.easybook.DatabaseConnectionTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibroTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="easybook" />
-      <option name="PACKAGE_NAME" value="com.easybook" />
-      <option name="MAIN_CLASS_NAME" value="com.easybook.LibroTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,22 +130,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UtenteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UtenteControllerTest.testRegistraUtente_CFDuplicato" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="easybook" />
       <option name="PACKAGE_NAME" value="com.easybook" />
-      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteControllerTest" />
+      <option name="METHOD_NAME" value="testRegistraUtente_CFDuplicato" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteControllerTest" />
+      <option name="METHOD_NAME" value="testRimuoviUtente_ConPrestitiAttivi" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtenteControllerTest.testSospendiUtente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="easybook" />
+      <option name="PACKAGE_NAME" value="com.easybook" />
+      <option name="MAIN_CLASS_NAME" value="com.easybook.UtenteControllerTest" />
+      <option name="METHOD_NAME" value="testSospendiUtente" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CatalogoControllerTest" />
+        <item itemvalue="JUnit.UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi" />
         <item itemvalue="JUnit.UtenteControllerTest" />
-        <item itemvalue="JUnit.UtenteTest" />
-        <item itemvalue="JUnit.LibroTest" />
-        <item itemvalue="JUnit.DatabaseConnectionTest" />
+        <item itemvalue="JUnit.UtenteControllerTest.testSospendiUtente" />
+        <item itemvalue="JUnit.UtenteControllerTest.testRegistraUtente_CFDuplicato" />
+        <item itemvalue="JUnit.CatalogoControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +205,7 @@
       <workItem from="1768857261278" duration="424000" />
       <workItem from="1768857825540" duration="358000" />
       <workItem from="1768858204670" duration="51000" />
-      <workItem from="1769180825548" duration="7912000" />
+      <workItem from="1769180825548" duration="11382000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta diagramma casi d'uso">
       <option name="closed" value="true" />
@@ -260,7 +264,8 @@
     <MESSAGE value="Aggiunta diagramma casi d'uso" />
     <MESSAGE value="Aggiunta descrizione casi d'uso" />
     <MESSAGE value="Aggiunta matrice mappatura casi d'uso" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta matrice mappatura casi d'uso" />
+    <MESSAGE value="riallineamento requisiti" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
