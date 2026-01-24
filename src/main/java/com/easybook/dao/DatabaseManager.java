@@ -18,7 +18,6 @@ public class DatabaseManager {
         try {
             String URL = "jdbc:sqlite:easybook.db";
             this.connection = DriverManager.getConnection(URL);
-            System.out.println("Connessione al database stabilita: " + URL);
         } catch (SQLException e) {
             throw new RuntimeException("Errore critico di connessione al DB: " + e.getMessage());
         }

@@ -21,8 +21,8 @@ class CatalogoControllerTest {
 
     @Test
     void testAggiungiLibro_Success() {
-        String isbn = "978-8804668231";
-        Libro libro = new Libro(isbn, "Il nome della rosa", "Umberto Eco", 5, 5);
+        String isbn = "978-8804669863";
+        Libro libro = new Libro(isbn, "Lo scudo di Talos", "Valerio Massimo Manfredi", 3, 3);
 
         // Assicuriamoci che non esista prima del test
         try {
@@ -34,7 +34,7 @@ class CatalogoControllerTest {
 
         Libro trovato = controller.cercaLibro(isbn);
         assertNotNull(trovato, "Il libro dovrebbe essere stato trovato nel DB");
-        assertEquals("Il nome della rosa", trovato.getTitolo());
+        assertEquals("Lo scudo di Talos", trovato.getTitolo());
 
         // Cleanup
         controller.rimuoviLibro(isbn);
