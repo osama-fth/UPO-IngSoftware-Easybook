@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ab43ae4-103d-4753-842a-df2a110a464d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/Dump_Database/DDL.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/Dump_Database/DML.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/dao/BibliotecarioDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Bibliotecario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/57c0e7fa-bf71-456b-b0f4-88d678e09a30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/57c0e7fa-bf71-456b-b0f4-88d678e09a30.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/dump_Database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Dump_Database.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easybook.db" beforeDir="false" afterPath="$PROJECT_DIR$/easybook.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/controller/CatalogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/controller/CatalogoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/controller/UtenteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/controller/UtenteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Libro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/easybook/model/Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/easybook/CatalogoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/easybook/CatalogoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/easybook/UtenteControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,38 +69,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main.executor": "Run",
-    "JUnit.CatalogoControllerTest.executor": "Run",
-    "JUnit.CatalogoControllerTest.testAggiungiLibro_ISBNDuplicato.executor": "Run",
-    "JUnit.CatalogoControllerTest.testAggiungiLibro_Success.executor": "Run",
-    "JUnit.CatalogoControllerTest.testRimuoviLibro_ConPrestitiAttivi.executor": "Run",
-    "JUnit.DatabaseConnectionTest (1).executor": "Run",
-    "JUnit.DatabaseConnectionTest.executor": "Run",
-    "JUnit.LibroTest.executor": "Run",
-    "JUnit.UtenteControllerTest.executor": "Run",
-    "JUnit.UtenteControllerTest.testRegistraUtente_CFDuplicato.executor": "Run",
-    "JUnit.UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi.executor": "Run",
-    "JUnit.UtenteControllerTest.testSospendiUtente.executor": "Run",
-    "JUnit.UtenteTest.executor": "Run",
-    "Maven.easybook [clean].executor": "Run",
-    "Maven.easybook [install].executor": "Run",
-    "Maven.easybook [test].executor": "Run",
-    "Maven.easybook [verify].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "definizione-progetto",
-    "last_opened_file_path": "/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "database.query.execution"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CatalogoControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CatalogoControllerTest.testAggiungiLibro_ISBNDuplicato.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CatalogoControllerTest.testAggiungiLibro_Success.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CatalogoControllerTest.testRimuoviLibro_ConPrestitiAttivi.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseConnectionTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseConnectionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LibroTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtenteControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtenteControllerTest.testRegistraUtente_CFDuplicato.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtenteControllerTest.testRimuoviUtente_ConPrestitiAttivi.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtenteControllerTest.testSospendiUtente.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UtenteTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.easybook [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.easybook [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.easybook [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.easybook [verify].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;definizione-progetto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/osamafoutih/Desktop/Università/3anno/ingegneriaDelSoftware/Foutih_Bellotti_Negrini&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/doc/word" />
@@ -205,7 +205,8 @@
       <workItem from="1768857261278" duration="424000" />
       <workItem from="1768857825540" duration="358000" />
       <workItem from="1768858204670" duration="51000" />
-      <workItem from="1769180825548" duration="11382000" />
+      <workItem from="1769180825548" duration="11648000" />
+      <workItem from="1769237718668" duration="1387000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta diagramma casi d'uso">
       <option name="closed" value="true" />

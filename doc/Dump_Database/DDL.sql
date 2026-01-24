@@ -38,14 +38,8 @@ CREATE TABLE IF NOT EXISTS Prestito
     data_scadenza     TEXT NOT NULL,
     data_restituzione TEXT,
 
-    -- Vincoli di integrità referenziale con azioni a cascata
-    FOREIGN KEY (utente_cf) REFERENCES Utente (cf)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-
-    FOREIGN KEY (libro_isbn) REFERENCES Libro (isbn)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    FOREIGN KEY (utente_cf) REFERENCES Utente (cf) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (libro_isbn) REFERENCES Libro (isbn) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- 5. Tabella SANZIONE
@@ -56,17 +50,5 @@ CREATE TABLE IF NOT EXISTS Sanzione
     importo     REAL    DEFAULT 0.0,
     pagata      INTEGER DEFAULT 0,
 
-    FOREIGN KEY (prestito_id) REFERENCES Prestito (id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    FOREIGN KEY (prestito_id) REFERENCES Prestito (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- DATI DI TEST
-INSERT OR IGNORE INTO Bibliotecario (matricola, nome, cognome, username, password)
-VALUES ('BIB001', 'Admin', 'Sistema', 'admin', 'admin');
-
-INSERT OR IGNORE INTO Libro (isbn, titolo, autore, copie_totali, copie_disponibili)
-VALUES ('978-8804668231', 'Il Nome della Rosa', 'Umberto Eco', 5, 5);
-
-INSERT OR IGNORE INTO Utente (cf, nome, cognome)
-VALUES ('RSSMRA80A01H501U', 'Mario', 'Rossi');
