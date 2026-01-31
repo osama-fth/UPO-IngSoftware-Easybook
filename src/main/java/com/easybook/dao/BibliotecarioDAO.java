@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 /**
  * @author Foutih Osama 20054809
+ * @author Lorezo Bellotti 20054630
+ * @author Riccardo Negrini 20054675
  */
 public class BibliotecarioDAO {
 

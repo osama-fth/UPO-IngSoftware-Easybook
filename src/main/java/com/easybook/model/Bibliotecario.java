@@ -1,9 +1,11 @@
 package com.easybook.model;
 
 /**
- * Classe POJO che rappresenta l'operatore Bibliotecario.
+ * Classe POJO che rappresenta l'entità Bibliotecario.
  *
  * @author Foutih Osama 20054809
+ * @author Lorezo Bellotti 20054630
+ * @author Riccardo Negrini 20054675
  */
 public class Bibliotecario {
     private String matricola;

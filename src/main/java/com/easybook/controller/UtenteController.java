@@ -19,11 +19,6 @@ public class UtenteController {
         this.utenteDAO = new UtenteDAO();
     }
 
-    /**
-     * Registra un nuovo utente.
-     *
-     * @throws IllegalArgumentException se il CF è già presente
-     */
     public void registraUtente(Utente utente) {
         // Controllo duplicati
         Utente esistente = utenteDAO.findByCf(utente.getCf());
@@ -47,11 +42,6 @@ public class UtenteController {
         utenteDAO.insert(utente);
     }
 
-    /**
-     * Modifica i dati di un utente esistente.
-     *
-     * @throws IllegalArgumentException se l'utente non esiste
-     */
     public void modificaUtente(Utente utente) {
         Utente esistente = utenteDAO.findByCf(utente.getCf());
         if (esistente == null) {
@@ -61,11 +51,6 @@ public class UtenteController {
         utenteDAO.update(utente);
     }
 
-    /**
-     * Rimuove un utente dall'anagrafica.
-     *
-     * @throws IllegalArgumentException se l'utente ha prestiti attivi
-     */
     public void rimuoviUtente(String cf) {
         Utente utente = utenteDAO.findByCf(cf);
         if (utente == null) {
@@ -80,23 +65,14 @@ public class UtenteController {
         utenteDAO.delete(cf);
     }
 
-    /**
-     * Recupera tutti gli utenti registrati.
-     */
     public List<Utente> getElencoUtenti() {
         return utenteDAO.findAll();
     }
 
-    /**
-     * Cerca un utente per codice fiscale.
-     */
     public Utente cercaUtente(String cf) {
         return utenteDAO.findByCf(cf);
     }
 
-    /**
-     * Sospende un utente (es. Per sanzioni non pagate).
-     */
     public void sospendiUtente(String cf) {
         Utente utente = utenteDAO.findByCf(cf);
         if (utente == null) {
@@ -105,10 +81,7 @@ public class UtenteController {
 
         utenteDAO.updateStato(cf, StatoUtente.SOSPESO);
     }
-
-    /**
-     * Riattiva un utente sospeso.
-     */
+    
     public void riattivaUtente(String cf) {
         Utente utente = utenteDAO.findByCf(cf);
         if (utente == null) {

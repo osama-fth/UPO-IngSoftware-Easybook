@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.easybook.view.UtentiViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Titolo -->
+    <Label text="Gestione Utenti" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- Tabella Utenti -->
+    <TableView fx:id="tabellaUtenti" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCf" text="Codice Fiscale" prefWidth="150"/>
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="120"/>
+            <TableColumn fx:id="colCognome" text="Cognome" prefWidth="120"/>
+            <TableColumn fx:id="colStato" text="Stato" prefWidth="80"/>
+            <TableColumn fx:id="colPrestiti" text="Prestiti Attivi" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Sezione Dettagli e Form -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Codice Fiscale:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCf" promptText="Inserisci CF" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtNome" promptText="Inserisci Nome" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Cognome:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCognome" promptText="Inserisci Cognome" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Bottoni Azione -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Registra Nuovo" onAction="#handleRegistra" style="-fx-base: #4CAF50;"/>
+        <Button text="Modifica Selezionato" onAction="#handleModifica"/>
+        <Button text="Rimuovi" onAction="#handleRimuovi" style="-fx-text-fill: red;"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="Sospendi Utente" onAction="#handleSospendi" style="-fx-base: #FF9800;"/>
+        <Button text="Riattiva Utente" onAction="#handleRiattiva" style="-fx-base: #2196F3;"/>
+    </HBox>
+
+    <!-- Area Messaggi e Navigazione -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="← Torna alla Home" onAction="#tornaHome"/>
+        <Label fx:id="lblMessaggio" text="" style="-fx-font-weight: bold;"/>
+    </HBox>
+</VBox>

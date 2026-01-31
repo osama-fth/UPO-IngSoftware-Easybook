@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 /**
  * Gestisce la connessione al database SQLite implementando il pattern Singleton.
- * Assicura che ci sia una sola istanza di connessione attiva per evitare conflitti su file locale.
  *
  * @author Foutih Osama 20054809
+ * @author Lorezo Bellotti 20054630
+ * @author Riccardo Negrini 20054675
  */
 public class DatabaseManager {
     private static DatabaseManager instance;
@@ -19,11 +20,10 @@ public class DatabaseManager {
             String URL = "jdbc:sqlite:easybook.db";
             this.connection = DriverManager.getConnection(URL);
         } catch (SQLException e) {
-            throw new RuntimeException("Errore critico di connessione al DB: " + e.getMessage());
+            throw new RuntimeException("Errore di connessione al DB: " + e.getMessage());
         }
     }
 
-    // Punto di accesso globale
     public static DatabaseManager getInstance() {
         if (instance == null) {
             instance = new DatabaseManager();
@@ -42,16 +42,5 @@ public class DatabaseManager {
 
     public Connection getConnection() {
         return connection;
-    }
-
-    public void closeConnection() {
-        try {
-            if (this.connection != null && !this.connection.isClosed()) {
-                this.connection.close();
-                System.out.println("Connessione chiusa.");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore durante la chiusura della connessione: " + e.getMessage(), e);
-        }
     }
 }
