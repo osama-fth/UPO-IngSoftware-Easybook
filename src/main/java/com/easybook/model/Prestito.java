@@ -17,11 +17,10 @@ public class Prestito {
     private LocalDate dataScadenza;
     private LocalDate dataRestituzione;
 
-    public Prestito(int id, Utente utente, Libro libro,  LocalDate dataInizio) {
-        this.id = id;
+    public Prestito( Utente utente, Libro libro) {
         this.utente = utente;
         this.libro = libro;
-        this.dataInizio = dataInizio;
+        this.dataInizio = LocalDate.now();
         this.dataScadenza = dataInizio.plusDays(30);
         this.dataRestituzione = null;
     }
@@ -50,7 +49,7 @@ public class Prestito {
         this.libro = libro;
     }
 
-    public Date getDataInizio() {
+    public LocalDate getDataInizio() {
         return dataInizio;
     }
 
@@ -58,7 +57,7 @@ public class Prestito {
         this.dataInizio = dataInizio;
     }
 
-    public Date getDataScadenza() {
+    public LocalDate getDataScadenza() {
         return dataScadenza;
     }
 
@@ -66,7 +65,7 @@ public class Prestito {
         this.dataScadenza = dataScadenza;
     }
 
-    public Date getDataRestituzione() {
+    public LocalDate getDataRestituzione() {
         return dataRestituzione;
     }
 

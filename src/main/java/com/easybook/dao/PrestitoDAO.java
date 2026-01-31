@@ -22,9 +22,11 @@ public class PrestitoDAO {
             pstmt.setInt(1, prestito.getId());
             pstmt.setString(2, prestito.getUtente().getCf());
             pstmt.setString(3, prestito.getLibro().getIsbn());
-            pstmt.setDate(4, prestito.getDataInizio());
-            pstmt.setDate(5, prestito.getDataScadenza());
-            pstmt.setDate(6, prestito.getDataRestituzione());
+            pstmt.setDate(4, java.sql.Date.valueOf(prestito.getDataInizio()));
+            pstmt.setDate(5, java.sql.Date.valueOf(prestito.getDataScadenza()));
+            pstmt.setDate(6, prestito.getDataRestituzione() != null
+                    ? java.sql.Date.valueOf(prestito.getDataRestituzione())
+                    : null);
 
             pstmt.executeUpdate();
 
@@ -53,7 +55,7 @@ public class PrestitoDAO {
         }
     }
 
-    public boolean findAcriveByLibro(String isbn) {
+    public boolean findActiveByLibro(String isbn) {
         String sql = "SELECT * FROM Prestito WHERE libro_isbn = ? AND data_restituzione IS NULL";
 
         try (Connection conn = DatabaseManager.getInstance().getConnection();
