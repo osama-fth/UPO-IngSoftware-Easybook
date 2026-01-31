@@ -15,46 +15,45 @@ class PrestitoTest {
 
     private Utente utente;
     private Libro libro;
-    private LocalDate dataInizio;
 
     @BeforeEach
     void setUp() {
         utente = new Utente("RSSMRA80A01H501U", "Mario", "Rossi", StatoUtente.ATTIVO, 0);
         libro = new Libro("978-8804668237", "Il nome della rosa", "Umberto Eco", 5, 5);
-        dataInizio = LocalDate.now();
     }
 
     @Test
     void testCreazionePrestito() {
-        Prestito prestito = new Prestito(1, utente, libro, dataInizio);
+        Prestito prestito = new Prestito(utente, libro);
 
-        assertEquals(1, prestito.getId());
         assertEquals("RSSMRA80A01H501U", prestito.getUtente().getCf());
         assertEquals("978-8804668237", prestito.getLibro().getIsbn());
 
-        assertEquals(dataInizio, prestito.getDataInizio());
-        assertEquals(dataInizio.plusDays(30), prestito.getDataScadenza());
-        assertNull(prestito.getDataRestituzione(), "La data di restituzione deve essere null all'inizio");
+        LocalDate oggi = LocalDate.now();
+        assertEquals(oggi, prestito.getDataInizio(), "La data inizio deve essere quella odierna");
+        assertEquals(oggi.plusDays(30), prestito.getDataScadenza(), "La scadenza deve essere a 30 giorni");
+        assertNull(prestito.getDataRestituzione(), "La data di restituzione deve essere null alla creazione");
     }
 
     @Test
     void testSettersPrestito() {
-        Prestito prestito = new Prestito(1, utente, libro, dataInizio);
-        LocalDate nuovaData = dataInizio.plusDays(1);
-        LocalDate dataRestituzione = dataInizio.plusDays(15);
+        Prestito prestito = new Prestito(utente, libro);
 
-        prestito.setId(99);
-        prestito.setDataInizio(nuovaData);
+        LocalDate dataPersonalizzata = LocalDate.of(2024, 1, 1);
+        LocalDate dataRestituzione = LocalDate.now();
+
+        prestito.setId(10);
+        prestito.setDataInizio(dataPersonalizzata);
         prestito.setDataRestituzione(dataRestituzione);
 
-        assertEquals(99, prestito.getId());
-        assertEquals(nuovaData, prestito.getDataInizio());
+        assertEquals(10, prestito.getId());
+        assertEquals(dataPersonalizzata, prestito.getDataInizio());
         assertEquals(dataRestituzione, prestito.getDataRestituzione());
     }
 
     @Test
     void testCoerenzaStatoUtenteNelPrestito() {
-        Prestito prestito = new Prestito(1, utente, libro, dataInizio);
+        Prestito prestito = new Prestito(utente, libro);
 
         assertEquals("ATTIVO", prestito.getUtente().getStato());
     }

@@ -14,24 +14,27 @@ import java.sql.SQLException;
 public class PrestitoDAO {
 
     public void insert(Prestito prestito){
-        String sql = "INSERT INTO Prestito(id, utente_cf, libro_isbn, data_inizio, data_scadenza, data_restituzione) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Prestito(utente_cf, libro_isbn, data_inizio, data_scadenza, data_restituzione) VALUES(?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, prestito.getId());
-            pstmt.setString(2, prestito.getUtente().getCf());
-            pstmt.setString(3, prestito.getLibro().getIsbn());
-            pstmt.setDate(4, java.sql.Date.valueOf(prestito.getDataInizio()));
-            pstmt.setDate(5, java.sql.Date.valueOf(prestito.getDataScadenza()));
-            pstmt.setDate(6, prestito.getDataRestituzione() != null
-                    ? java.sql.Date.valueOf(prestito.getDataRestituzione())
-                    : null);
+            pstmt.setString(1, prestito.getUtente().getCf());
+            pstmt.setString(2, prestito.getLibro().getIsbn());
+
+            pstmt.setString(3, prestito.getDataInizio().toString());
+            pstmt.setString(4, prestito.getDataScadenza().toString());
+
+            if (prestito.getDataRestituzione() != null) {
+                pstmt.setString(5, prestito.getDataRestituzione().toString());
+            } else {
+                pstmt.setNull(5, java.sql.Types.VARCHAR);
+            }
 
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Errore DAO durante l'inserimento del prestito con ID " + prestito.getId(), e);
+            throw new RuntimeException("Errore DAO durante l'inserimento del prestito", e);
         }
     }
 

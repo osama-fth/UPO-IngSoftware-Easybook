@@ -25,6 +25,15 @@ public class Prestito {
         this.dataRestituzione = null;
     }
 
+    public Prestito(int id, Utente utente, Libro libro, LocalDate dataInizio, LocalDate dataScadenza, LocalDate dataRestituzione) {
+        this.id = id;
+        this.utente = utente;
+        this.libro = libro;
+        this.dataInizio = dataInizio;
+        this.dataScadenza = dataScadenza;
+        this.dataRestituzione = dataRestituzione;
+    }
+
     public int getId() {
         return id;
     }
