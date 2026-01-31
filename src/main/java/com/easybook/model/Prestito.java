@@ -1,5 +1,6 @@
 package com.easybook.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -49,7 +50,7 @@ public class Prestito {
         this.libro = libro;
     }
 
-    public LocalDate getDataInizio() {
+    public Date getDataInizio() {
         return dataInizio;
     }
 
@@ -57,7 +58,7 @@ public class Prestito {
         this.dataInizio = dataInizio;
     }
 
-    public LocalDate getDataScadenza() {
+    public Date getDataScadenza() {
         return dataScadenza;
     }
 
@@ -65,7 +66,7 @@ public class Prestito {
         this.dataScadenza = dataScadenza;
     }
 
-    public LocalDate getDataRestituzione() {
+    public Date getDataRestituzione() {
         return dataRestituzione;
     }
 
