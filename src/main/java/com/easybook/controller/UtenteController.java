@@ -65,10 +65,6 @@ public class UtenteController {
         utenteDAO.delete(cf);
     }
 
-    public List<Utente> getElencoUtenti() {
-        return utenteDAO.findAll();
-    }
-
     public Utente cercaUtente(String cf) {
         return utenteDAO.findByCf(cf);
     }

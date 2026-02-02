@@ -9,6 +9,16 @@ di una biblioteca.
 
 | Nome             | Matricola | Email                       | Data Esame |
 |------------------|-----------|-----------------------------|------------|
-| Osama Foutih     | 20054809  | 20054809@studenti.uniupo.it | -          |
-| Lorenzo Bellotti | 20054630  | 20054630@studenti.uniupo.it | -          |
-| Riccardo Negrini | 20054675  | 20054675@studenti.uniupo.it | -          |
+| Osama Foutih     | 20054809  | 20054809@studenti.uniupo.it | 18/02/2026 |
+| Lorenzo Bellotti | 20054630  | 20054630@studenti.uniupo.it | 18/02/2026 |
+| Riccardo Negrini | 20054675  | 20054675@studenti.uniupo.it | 18/02/2026 |
+
+### Credenziali per usare interfaccia grafica
+
+| Username         | Password    |
+|------------------|-------------|
+| osama.foutih     | password123 |
+| lorenzo.bellotti | password123 |
+| riccardo.negrini | password123 |
+
+###### Note: IDE utilizzato IntelliJ IDEA
