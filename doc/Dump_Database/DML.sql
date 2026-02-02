@@ -1,6 +1,8 @@
 -- Bibliotecari
 INSERT INTO Bibliotecario (matricola, nome, cognome, username, password)
-VALUES ('BIB001', 'Alessia', 'Ferrari', 'alessia.ferrari', 'Password123!');
+VALUES ('BIB001', 'Osama', 'Foutih', 'osama.foutih', 'osama123'),
+       ('BIB002', 'Lorenzo', 'Bellotti', 'lorenzo.bellotti', 'lorenzo123'),
+       ('BIB003', 'Riccardo', 'Negrini', 'riccardo.negrini', 'riccardo123');
 
 -- Libri
 INSERT INTO Libro (isbn, titolo, autore, copie_totali, copie_disponibili)

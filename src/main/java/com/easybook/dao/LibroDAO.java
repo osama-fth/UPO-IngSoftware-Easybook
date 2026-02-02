@@ -17,8 +17,9 @@ public class LibroDAO {
     public void insert(Libro libro) {
         String sql = "INSERT INTO Libro(isbn, titolo, autore, copie_totali, copie_disponibili) VALUES(?, ?, ?, ?, ?)";
 
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, libro.getIsbn());
             pstmt.setString(2, libro.getTitolo());
@@ -27,6 +28,7 @@ public class LibroDAO {
             pstmt.setInt(5, libro.getCopieDisponibili());
 
             pstmt.executeUpdate();
+            pstmt.close();
 
         } catch (SQLException e) {
             throw new RuntimeException("Errore DAO durante l'inserimento del libro " + libro.getTitolo(), e);
@@ -37,9 +39,10 @@ public class LibroDAO {
         List<Libro> libri = new ArrayList<>();
         String sql = "SELECT * FROM Libro";
 
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 Libro l = new Libro(
@@ -50,6 +53,8 @@ public class LibroDAO {
                         rs.getInt("copie_disponibili"));
                 libri.add(l);
             }
+            rs.close();
+            pstmt.close();
         } catch (SQLException e) {
             throw new RuntimeException("Errore DAO durante il recupero della lista libri", e);
         }
@@ -58,35 +63,41 @@ public class LibroDAO {
 
     public Libro findByIsbn(String isbn) {
         String sql = "SELECT * FROM Libro WHERE isbn = ?";
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, isbn);
             ResultSet rs = pstmt.executeQuery();
 
+            Libro libro = null;
             if (rs.next()) {
-                return new Libro(
+                libro = new Libro(
                         rs.getString("isbn"),
                         rs.getString("titolo"),
                         rs.getString("autore"),
                         rs.getInt("copie_totali"),
                         rs.getInt("copie_disponibili"));
             }
+            rs.close();
+            pstmt.close();
+            return libro;
         } catch (SQLException e) {
             throw new RuntimeException("Errore DAO durante la ricerca del libro con ISBN: " + isbn, e);
         }
-        return null;
     }
 
     // Metodo per aggiornare la disponibilità (usato nei prestiti)
     public void updateCopie(String isbn, int nuoveCopie) {
         String sql = "UPDATE Libro SET copie_disponibili = ? WHERE isbn = ?";
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setInt(1, nuoveCopie);
             pstmt.setString(2, isbn);
             pstmt.executeUpdate();
+            pstmt.close();
 
         } catch (SQLException e) {
             throw new RuntimeException("Errore DAO durante l'aggiornamento copie per ISBN: " + isbn, e);
@@ -98,8 +109,9 @@ public class LibroDAO {
      */
     public void update(Libro libro) {
         String sql = "UPDATE Libro SET titolo = ?, autore = ?, copie_totali = ?, copie_disponibili = ? WHERE isbn = ?";
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, libro.getTitolo());
             pstmt.setString(2, libro.getAutore());
@@ -108,6 +120,7 @@ public class LibroDAO {
             pstmt.setString(5, libro.getIsbn());
 
             int rowsAffected = pstmt.executeUpdate();
+            pstmt.close();
             if (rowsAffected == 0) {
                 throw new RuntimeException("Nessun libro trovato con ISBN: " + libro.getIsbn());
             }
@@ -122,11 +135,13 @@ public class LibroDAO {
      */
     public void delete(String isbn) {
         String sql = "DELETE FROM Libro WHERE isbn = ?";
-        try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, isbn);
             int rowsAffected = pstmt.executeUpdate();
+            pstmt.close();
 
             if (rowsAffected == 0) {
                 throw new RuntimeException("Nessun libro trovato con ISBN: " + isbn);

@@ -9,11 +9,10 @@ import com.easybook.model.Prestito;
 import com.easybook.model.Utente;
 
 /**
- * Controller per la gestione del prestito.
+ * Controller per la gestione del prestito (UC3 & UC4).
  *
  * @author Bellotti Lorenzo 20054630
  */
-
 public class PrestitoController {
 
     private final UtenteDAO utenteDAO;
@@ -27,11 +26,11 @@ public class PrestitoController {
     }
 
     public void registraPrestito(String cfUtente, String isbnLibro) {
-       Utente utente = utenteDAO.findByCf(cfUtente);
+        Utente utente = utenteDAO.findByCf(cfUtente);
         if (utente == null) {
             throw new IllegalArgumentException("Utente con CF " + cfUtente + " non trovato.");
         }
-        if(utente.getStato().equals("SOSPESO")) {
+        if (utente.getStato().equals("SOSPESO")) {
             throw new IllegalArgumentException("Utente con CF " + cfUtente + " è SOSPESO.");
         }
 
@@ -50,7 +49,7 @@ public class PrestitoController {
 
         Prestito prestito = new Prestito(utente, libro);
         prestitoDAO.insert(prestito);
-        libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili()-1);
+        libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() - 1);
 
     }
 }

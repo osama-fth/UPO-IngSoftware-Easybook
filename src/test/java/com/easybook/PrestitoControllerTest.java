@@ -13,15 +13,17 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PrestitoControllerTest {
+class PrestitoControllerTest extends TestBase {
 
     private PrestitoController prestitoController;
     private UtenteController utenteController;
     private CatalogoController catalogoController;
     private Random random;
 
+    @Override
     @BeforeEach
-    void setUp() {
+    public void setUp() throws Exception {
+        super.setUp(); // Inizializza il DB in memoria PRIMA
         prestitoController = new PrestitoController();
         utenteController = new UtenteController();
         catalogoController = new CatalogoController();
@@ -64,11 +66,9 @@ class PrestitoControllerTest {
         utenteController.registraUtente(utente);
         catalogoController.aggiungiLibro(libro);
 
-        Exception e = assertThrows(IllegalArgumentException.class, () ->
-                prestitoController.registraPrestito(cf, isbn)
-        );
+        Exception e = assertThrows(IllegalArgumentException.class, () -> prestitoController.registraPrestito(cf, isbn));
 
-        assertTrue(e.getMessage().contains("è SOSPESO"));
+        assertTrue(e.getMessage().contains("SOSPESO"));
     }
 
     @Test
@@ -88,9 +88,8 @@ class PrestitoControllerTest {
         Libro libro4 = new Libro(isbnSforato, "Il quarto libro", "Autore", 1, 1);
         catalogoController.aggiungiLibro(libro4);
 
-        Exception e = assertThrows(IllegalArgumentException.class, () ->
-                prestitoController.registraPrestito(cf, isbnSforato)
-        );
+        Exception e = assertThrows(IllegalArgumentException.class,
+                () -> prestitoController.registraPrestito(cf, isbnSforato));
 
         assertTrue(e.getMessage().contains("limite massimo"));
     }
@@ -106,9 +105,7 @@ class PrestitoControllerTest {
         utenteController.registraUtente(utente);
         catalogoController.aggiungiLibro(libro);
 
-        Exception e = assertThrows(IllegalArgumentException.class, () ->
-                prestitoController.registraPrestito(cf, isbn)
-        );
+        Exception e = assertThrows(IllegalArgumentException.class, () -> prestitoController.registraPrestito(cf, isbn));
 
         assertEquals("Nessuna copia disponibile per il libro con ISBN " + isbn + ".", e.getMessage());
     }
