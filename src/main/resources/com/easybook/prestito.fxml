@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.easybook.view.PrestitoViewController">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Registrazione Nuovo Prestito (UC3)" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Label text="Inserisci i dati per verificare l'idoneità (UC4) e registrare il prestito." wrapText="true"/>
+
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <Label text="Codice Fiscale Utente:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCfUtente" promptText="Es. RSSMRA..." GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+
+        <Label text="ISBN Libro:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIsbnLibro" promptText="Es. 978-..." GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="200"/>
+    </GridPane>
+
+    <Label fx:id="lblMessaggio" wrapText="true" style="-fx-font-weight: bold;"/>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Conferma Prestito" onAction="#handleRegistraPrestito"
+                style="-fx-base: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Annulla / Indietro" onAction="#tornaGestione"/>
+    </HBox>
+
+</VBox>

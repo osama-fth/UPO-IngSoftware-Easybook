@@ -11,6 +11,7 @@
 
     <Button text="Gestione Catalogo (UC1)" onAction="#vaiAlCatalogo" prefWidth="200"/>
     <Button text="Gestione Utenti (UC2)" onAction="#vaiAgliUtenti" prefWidth="200"/>
+    <Button text="Gestione Prestiti" onAction="#vaiAMenuPrestiti" prefWidth="200"/>
 
     <!-- Spaziatore -->
     <Label text="" minHeight="20"/>

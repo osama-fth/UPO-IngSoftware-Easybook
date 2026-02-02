@@ -8,6 +8,8 @@ import com.easybook.model.Libro;
 import com.easybook.model.Prestito;
 import com.easybook.model.Utente;
 
+import java.util.List;
+
 /**
  * Controller per la gestione del prestito (UC3 & UC4).
  *
@@ -50,6 +52,9 @@ public class PrestitoController {
         Prestito prestito = new Prestito(utente, libro);
         prestitoDAO.insert(prestito);
         libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() - 1);
+    }
 
+    public List<Prestito> getTuttiIPrestiti() {
+        return prestitoDAO.findAll();
     }
 }

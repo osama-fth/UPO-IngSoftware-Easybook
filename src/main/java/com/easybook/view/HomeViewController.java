@@ -56,6 +56,15 @@ public class HomeViewController {
     }
 
     @FXML
+    private void vaiAMenuPrestiti() throws IOException {
+        if (BibliotecarioController.isAutenticato()) {
+            App.setRoot("menuprestiti");
+        } else {
+            App.setRoot("login");
+        }
+    }
+
+    @FXML
     private void logout() throws IOException {
         BibliotecarioController controller = new BibliotecarioController();
         controller.logout();
