@@ -5,53 +5,80 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Gestisce la connessione al database SQLite implementando il pattern Singleton.
- * Assicura che ci sia una sola istanza di connessione attiva per evitare conflitti su file locale.
- *
  * @author Foutih Osama 20054809
+ * @author Lorenzo Bellotti 20054630
+ * @author Riccardo Negrini 20054675
  */
 public class DatabaseManager {
     private static DatabaseManager instance;
-    private final Connection connection;
+    private Connection connection;
+    private String url = "jdbc:sqlite:easybook.db";
 
     private DatabaseManager() {
-        try {
-            String URL = "jdbc:sqlite:easybook.db";
-            this.connection = DriverManager.getConnection(URL);
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore critico di connessione al DB: " + e.getMessage());
-        }
+        // Costruttore privato per singleton
     }
 
-    // Punto di accesso globale
-    public static DatabaseManager getInstance() {
+    private DatabaseManager(String customUrl) {
+        this.url = customUrl;
+    }
+
+    public static synchronized DatabaseManager getInstance() {
         if (instance == null) {
             instance = new DatabaseManager();
-        } else {
-            try {
-                // Se la connessione è chiusa, la riapriamo
-                if (instance.getConnection().isClosed()) {
-                    instance = new DatabaseManager();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException("Errore durante la verifica della connessione: " + e.getMessage());
-            }
+            instance.connetti();
         }
         return instance;
     }
 
-    public Connection getConnection() {
-        return connection;
+    /**
+     * Imposta un'istanza di test con URL personalizzato (es. jdbc:sqlite::memory:)
+     */
+    public static synchronized void setTestInstance(String testUrl) {
+        // Chiudi la connessione esistente se presente
+        if (instance != null && instance.connection != null) {
+            try {
+                instance.connection.close();
+            } catch (SQLException e) {
+                // Ignora errori di chiusura
+            }
+        }
+
+        // Crea nuova istanza con URL di test
+        instance = new DatabaseManager(testUrl);
+        instance.connetti();
     }
 
-    public void closeConnection() {
+    /**
+     * Resetta l'istanza singleton (utile per i test)
+     */
+    public static synchronized void resetInstance() {
+        if (instance != null && instance.connection != null) {
+            try {
+                instance.connection.close();
+            } catch (SQLException e) {
+                // Ignora errori di chiusura
+            }
+        }
+        instance = null;
+    }
+
+    private void connetti() {
         try {
-            if (this.connection != null && !this.connection.isClosed()) {
-                this.connection.close();
-                System.out.println("Connessione chiusa.");
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore di connessione al database: " + e.getMessage(), e);
+        }
+    }
+
+    public Connection getConnection() {
+        try {
+            // Riconnetti se la connessione è chiusa
+            if (connection == null || connection.isClosed()) {
+                connetti();
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Errore durante la chiusura della connessione: " + e.getMessage(), e);
+            connetti();
         }
+        return connection;
     }
 }

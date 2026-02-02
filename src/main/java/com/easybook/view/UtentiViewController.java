@@ -14,7 +14,8 @@ import java.io.IOException;
 
 /**
  * Controller grafico per la schermata di Gestione Utenti (UC2).
- * Collega l'interfaccia FXML al backend UtenteController.
+ *
+ * @author Foutih Osama 20054809
  */
 public class UtentiViewController {
 

@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author Foutih Osama 20054809
+ */
 class UtenteTest {
 
     @Test

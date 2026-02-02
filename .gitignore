@@ -27,6 +27,3 @@ Desktop.ini
 *.bak
 *~
 ~$*.docx
-
-# --- Database ---
-easybook.db

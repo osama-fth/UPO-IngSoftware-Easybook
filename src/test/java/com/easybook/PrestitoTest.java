@@ -11,6 +11,9 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Lorenzo Bellotti 20054630
+ */
 class PrestitoTest {
 
     private Utente utente;

@@ -77,7 +77,7 @@ public class UtenteController {
 
         utenteDAO.updateStato(cf, StatoUtente.SOSPESO);
     }
-    
+
     public void riattivaUtente(String cf) {
         Utente utente = utenteDAO.findByCf(cf);
         if (utente == null) {
@@ -85,5 +85,9 @@ public class UtenteController {
         }
 
         utenteDAO.updateStato(cf, StatoUtente.ATTIVO);
+    }
+
+    public List<Utente> getElencoUtenti() {
+        return utenteDAO.findAll();
     }
 }

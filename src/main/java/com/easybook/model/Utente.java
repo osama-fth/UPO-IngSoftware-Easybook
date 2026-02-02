@@ -12,14 +12,15 @@ public class Utente {
     private StatoUtente stato;
     private int numPrestitiAttivi;
 
-    public Utente(String cf, String nome, String cognome, StatoUtente stato, int numPrestitiAttivi) {
+    public Utente(String cf, String nome, String cognome, StatoUtente stato, int prestitiAttivi) {
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
         this.stato = stato;
-        this.numPrestitiAttivi = numPrestitiAttivi;
+        this.numPrestitiAttivi = prestitiAttivi;
     }
 
+    // Getters e Setters
     public String getCf() {
         return cf;
     }
@@ -45,7 +46,11 @@ public class Utente {
     }
 
     public String getStato() {
-        return stato.toString();
+        return stato.name();
+    }
+
+    public StatoUtente getStatoEnum() {
+        return stato;
     }
 
     public void setStato(StatoUtente stato) {
@@ -56,7 +61,7 @@ public class Utente {
         return numPrestitiAttivi;
     }
 
-    public void setNumPrestitiAttivi(int numPrestitiAttivi) {
-        this.numPrestitiAttivi = numPrestitiAttivi;
+    public void setNumPrestitiAttivi(int prestitiAttivi) {
+        this.numPrestitiAttivi = prestitiAttivi;
     }
 }

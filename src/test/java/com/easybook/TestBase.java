@@ -10,6 +10,11 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.stream.Collectors;
 
+/**
+ * @author Foutih Osama 20054809
+ * @author Lorenzo Bellotti 20054630
+ * @author Riccardo Negrini 20054675
+ */
 public class TestBase {
 
     @BeforeEach
@@ -18,8 +23,8 @@ public class TestBase {
         String testUrl = "jdbc:sqlite::memory:";
         DatabaseManager.setTestInstance(testUrl);
 
-        // IMPORTANTE: NON usare try-with-resources qui!
-        // Con SQLite in memoria, chiudere la connessione distrugge il database.
+        // NON usare try-with-resources sulla connessione!
+        // Con SQLite in memoria, chiudere la connessione distrugge il DB
         Connection conn = DatabaseManager.getInstance().getConnection();
         Statement stmt = conn.createStatement();
 
@@ -31,13 +36,14 @@ public class TestBase {
                 stmt.execute(query);
             }
         }
-        stmt.close(); // Chiudiamo solo lo statement, NON la connessione
+
+        stmt.close(); // Chiudi solo lo statement, NON la connessione
     }
 
     private String loadResourceFile() {
         InputStream is = getClass().getClassLoader().getResourceAsStream("DDL.sql");
         if (is == null) {
-            throw new RuntimeException("Impossibile trovare il file: " + "DDL.sql");
+            throw new RuntimeException("Impossibile trovare il file: DDL.sql");
         }
         return new BufferedReader(new InputStreamReader(is))
                 .lines().collect(Collectors.joining("\n"));

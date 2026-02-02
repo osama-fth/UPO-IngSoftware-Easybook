@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test per il controller degli utenti (UC2).
+ * @author Foutih Osama 20054809
  */
 class UtenteControllerTest extends TestBase {
 

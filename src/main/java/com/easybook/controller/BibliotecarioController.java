@@ -7,14 +7,24 @@ import com.easybook.model.Bibliotecario;
  * Controller per la gestione dell'autenticazione del bibliotecario.
  *
  * @author Foutih Osama 20054809
+ * @author Bellotti Lorenzo 20054630
+ * @author Negrini Riccardo 20054675
  */
 public class BibliotecarioController {
 
-    private final BibliotecarioDAO bibliotecarioDAO;
     private static Bibliotecario bibliotecarioCorrente = null;
+    private final BibliotecarioDAO bibliotecarioDAO;
 
     public BibliotecarioController() {
         this.bibliotecarioDAO = new BibliotecarioDAO();
+    }
+
+    public static Bibliotecario getBibliotecarioCorrente() {
+        return bibliotecarioCorrente;
+    }
+
+    public static boolean isAutenticato() {
+        return bibliotecarioCorrente != null;
     }
 
     public Bibliotecario login(String username, String password) {
@@ -36,13 +46,5 @@ public class BibliotecarioController {
 
     public void logout() {
         bibliotecarioCorrente = null;
-    }
-
-    public static Bibliotecario getBibliotecarioCorrente() {
-        return bibliotecarioCorrente;
-    }
-    
-    public static boolean isAutenticato() {
-        return bibliotecarioCorrente != null;
     }
 }
