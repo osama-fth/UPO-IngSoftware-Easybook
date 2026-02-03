@@ -1,6 +1,5 @@
 package com.easybook.controller;
 
-
 import com.easybook.dao.LibroDAO;
 import com.easybook.dao.PrestitoDAO;
 import com.easybook.dao.UtenteDAO;
@@ -38,7 +37,8 @@ public class PrestitoController {
 
         int prestitiAttivi = prestitoDAO.countPrestitiAttivi(cfUtente);
         if (prestitiAttivi >= 3) {
-            throw new IllegalArgumentException("Utente con CF " + cfUtente + " ha raggiunto il limite massimo di prestiti attivi.");
+            throw new IllegalArgumentException(
+                    "Utente con CF " + cfUtente + " ha raggiunto il limite massimo di prestiti attivi.");
         }
 
         Libro libro = libroDAO.findByIsbn(isbnLibro);
@@ -52,6 +52,8 @@ public class PrestitoController {
         Prestito prestito = new Prestito(utente, libro);
         prestitoDAO.insert(prestito);
         libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() - 1);
+        utente.setNumPrestitiAttivi(utente.getNumPrestitiAttivi() + 1);
+        utenteDAO.update(utente);
     }
 
     public List<Prestito> getTuttiIPrestiti() {

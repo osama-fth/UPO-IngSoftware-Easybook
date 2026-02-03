@@ -55,7 +55,9 @@ class PrestitoControllerTest extends TestBase {
         assertDoesNotThrow(() -> prestitoController.registraPrestito(cf, isbn));
 
         Libro libroAggiornato = catalogoController.cercaLibro(isbn);
+        Utente utenteAggiornato = utenteController.cercaUtente(cf);
         assertEquals(4, libroAggiornato.getCopieDisponibili());
+        assertEquals(1, utenteAggiornato.getNumPrestitiAttivi());
     }
 
     @Test
