@@ -8,20 +8,26 @@ package com.easybook.model;
 
 public class Sanzione {
     private int idprestito;
-    private float importo;
+    private double importo;
     private int pagata;
 
-    public Sanzione(int idprestito, float importo){
+    public Sanzione(int idprestito, double importo){
         this.idprestito=idprestito;
         this.importo=importo;
         this.pagata=0;
     }
+    public Sanzione(int idprestito, double importo, int pagata){
+        this.idprestito=idprestito;
+        this.importo=importo;
+        this.pagata=pagata;
+    }
 
-    public float getImporto() {
+
+    public double getImporto() {
         return importo;
     }
 
-    public void setImporto(float importo) {
+    public void setImporto(double importo) {
         this.importo = importo;
     }
 
