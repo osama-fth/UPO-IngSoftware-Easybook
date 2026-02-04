@@ -2,6 +2,7 @@ package com.easybook.view;
 
 import com.easybook.App;
 import javafx.fxml.FXML;
+
 import java.io.IOException;
 
 /**

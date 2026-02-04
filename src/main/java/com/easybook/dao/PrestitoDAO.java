@@ -153,6 +153,30 @@ public class PrestitoDAO {
         }
     }
 
+    public Prestito findById(int id) {
+        String sql = "SELECT p.*, u.nome as u_nome, u.cognome as u_cognome, u.stato as u_stato, u.num_prestiti_attivi, "
+                + "l.titolo, l.autore, l.copie_totali, l.copie_disponibili " +
+                "FROM Prestito p " +
+                "JOIN Utente u ON p.utente_cf = u.cf " +
+                "JOIN Libro l ON p.libro_isbn = l.isbn " +
+                "WHERE p.id = ?";
+        try {
+            Connection conn = DatabaseManager.getInstance().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            Prestito prestito = null;
+            if (rs.next()) {
+                prestito = creaPrestito(rs);
+            }
+            rs.close();
+            pstmt.close();
+            return prestito;
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore DAO durante la ricerca del prestito con ID: " + id, e);
+        }
+    }
+
     private Prestito creaPrestito(ResultSet rs) throws SQLException {
         Utente utente = new Utente(
                 rs.getString("utente_cf"),

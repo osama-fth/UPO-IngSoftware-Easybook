@@ -4,14 +4,11 @@ import com.easybook.dao.LibroDAO;
 import com.easybook.dao.PrestitoDAO;
 import com.easybook.dao.SanzioneDAO;
 import com.easybook.dao.UtenteDAO;
-import com.easybook.model.Libro;
-import com.easybook.model.Prestito;
-import com.easybook.model.Sanzione;
-import com.easybook.model.StatoUtente;
-import com.easybook.model.Utente;
+import com.easybook.model.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 /**
  * Controller per la gestione della restituzione (UC5) e sanzioni (UC6).
@@ -19,6 +16,11 @@ import java.time.temporal.ChronoUnit;
  * @author Riccardo Negrini 20054675
  */
 public class RestituzioneController {
+
+    private static final double SANZIONE_BASE = 10.0;
+    private static final int GIORNI_SOGLIA = 7;
+    private static final double INCREMENTO_GIORNALIERO = 0.50;
+
     private final SanzioneDAO sanzioneDAO;
     private final PrestitoDAO prestitoDAO;
     private final LibroDAO libroDAO;
@@ -31,104 +33,90 @@ public class RestituzioneController {
         this.utenteDAO = new UtenteDAO();
     }
 
-    /**
-     * Registra la restituzione di un libro.
-     * Se il prestito è in ritardo, applica una sanzione e sospende l'utente.
-     *
-     * @param idPrestito ID del prestito da chiudere
-     * @throws IllegalArgumentException se il prestito non esiste o è già stato restituito
-     */
     public void registraRestituzione(int idPrestito) {
-        // Recupera il prestito dal database
-        Prestito prestito = trovaPrestito(idPrestito);
-        
+        Prestito prestito = prestitoDAO.findById(idPrestito);
+
         if (prestito == null) {
             throw new IllegalArgumentException("Prestito con ID " + idPrestito + " non trovato.");
         }
 
         if (prestito.getDataRestituzione() != null) {
-            throw new IllegalArgumentException("Prestito con ID " + idPrestito + " già restituito in data " 
-                + prestito.getDataRestituzione());
+            throw new IllegalArgumentException("Prestito con ID " + idPrestito + " già restituito in data "
+                    + prestito.getDataRestituzione());
         }
 
         LocalDate oggi = LocalDate.now();
         prestito.setDataRestituzione(oggi);
 
-        // Verifica se c'è ritardo e applica eventuale sanzione
-        if (oggi.isAfter(prestito.getDataScadenza())) {
-            applicaSanzione(prestito, oggi);
-        }
-
         // Aggiorna il prestito nel database
         prestitoDAO.update(prestito);
 
         // Incrementa le copie disponibili del libro
-        Libro libro = prestito.getLibro();
+        Libro libro = libroDAO.findByIsbn(prestito.getLibro().getIsbn());
         libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() + 1);
 
         // Decrementa il numero di prestiti attivi dell'utente
-        Utente utente = prestito.getUtente();
-        utente.setNumPrestitiAttivi(utente.getNumPrestitiAttivi() - 1);
+        Utente utente = utenteDAO.findByCf(prestito.getUtente().getCf());
+        utente.setNumPrestitiAttivi(Math.max(0, utente.getNumPrestitiAttivi() - 1));
         utenteDAO.update(utente);
+
+        // Verifica se c'è ritardo e applica eventuale sanzione (UC6)
+        if (oggi.isAfter(prestito.getDataScadenza())) {
+            applicaSanzione(prestito, oggi);
+        }
     }
 
     /**
-     * Applica una sanzione per ritardo nella restituzione.
-     * Logica: 10€ fino a 7 giorni, poi 1€ per ogni giorno aggiuntivo.
-     *
-     * @param prestito il prestito in ritardo
-     * @param dataRestituzione la data effettiva di restituzione
+     * Applica una sanzione per ritardo nella restituzione (UC6).
      */
     private void applicaSanzione(Prestito prestito, LocalDate dataRestituzione) {
         long giorniRitardo = ChronoUnit.DAYS.between(prestito.getDataScadenza(), dataRestituzione);
-        
-        double importo;
-        if (giorniRitardo <= 7) {
-            importo = 10.0;
-        } else {
-            importo = 10.0 + (giorniRitardo - 7);
-        }
+        double importo = calcolaImportoSanzione(giorniRitardo);
 
         // Crea e salva la sanzione
         Sanzione sanzione = new Sanzione(prestito.getId(), importo);
         sanzioneDAO.insert(sanzione);
 
-        // Sospende l'utente
-        Utente utente = prestito.getUtente();
-        utente.setStato(StatoUtente.SOSPESO);
-        utenteDAO.update(utente);
+        // Sospende l'utente (blocca futuri prestiti)
+        utenteDAO.updateStato(prestito.getUtente().getCf(), StatoUtente.SOSPESO);
     }
 
     /**
-     * Trova un prestito per ID cercando in tutti i prestiti.
-     *
-     * @param idPrestito ID del prestito da cercare
-     * @return il prestito trovato o null
+     * Calcola l'importo della sanzione in base ai giorni di ritardo.
+     * - Fino a 7 giorni: 10€ fissi
+     * - Dall'8° giorno: 10€ + 0.50€ per ogni giorno oltre il 7°
      */
-    private Prestito trovaPrestito(int idPrestito) {
+    public double calcolaImportoSanzione(long giorniRitardo) {
+        if (giorniRitardo <= 0) {
+            return 0.0;
+        }
+        if (giorniRitardo <= GIORNI_SOGLIA) {
+            return SANZIONE_BASE;
+        }
+        long giorniExtra = giorniRitardo - GIORNI_SOGLIA;
+        return SANZIONE_BASE + (giorniExtra * INCREMENTO_GIORNALIERO);
+    }
+
+    /**
+     * Restituisce tutti i prestiti attivi (non ancora restituiti).
+     */
+    public List<Prestito> getPrestitiAttivi() {
         return prestitoDAO.findAll().stream()
-            .filter(p -> p.getId() == idPrestito)
-            .findFirst()
-            .orElse(null);
+                .filter(p -> p.getDataRestituzione() == null)
+                .toList();
     }
 
     /**
      * Verifica se un prestito ha una sanzione associata.
-     *
-     * @param idPrestito ID del prestito
-     * @return true se esiste una sanzione, false altrimenti
      */
     public boolean hasSanzione(int idPrestito) {
-        return sanzioneDAO.findbyprestitoid(idPrestito) != null;
+        return sanzioneDAO.findByPrestitoId(idPrestito) != null;
     }
 
     /**
      * Recupera la sanzione associata a un prestito.
-     *
-     * @param idPrestito ID del prestito
-     * @return la sanzione o null se non esiste
      */
     public Sanzione getSanzione(int idPrestito) {
-        return sanzioneDAO.findbyprestitoid(idPrestito);
+        return sanzioneDAO.findByPrestitoId(idPrestito);
     }
 }

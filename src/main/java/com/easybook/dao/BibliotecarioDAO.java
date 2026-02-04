@@ -2,7 +2,10 @@ package com.easybook.dao;
 
 import com.easybook.model.Bibliotecario;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author Foutih Osama 20054809

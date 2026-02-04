@@ -2,14 +2,15 @@ package com.easybook;
 
 import com.easybook.model.Libro;
 import com.easybook.model.Prestito;
-import com.easybook.model.Utente;
 import com.easybook.model.StatoUtente;
+import com.easybook.model.Utente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * @author Lorenzo Bellotti 20054630

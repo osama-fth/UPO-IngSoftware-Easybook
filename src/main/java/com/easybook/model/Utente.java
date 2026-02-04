@@ -49,12 +49,12 @@ public class Utente {
         return stato.name();
     }
 
-    public StatoUtente getStatoEnum() {
-        return stato;
-    }
-
     public void setStato(StatoUtente stato) {
         this.stato = stato;
+    }
+
+    public StatoUtente getStatoEnum() {
+        return stato;
     }
 
     public int getNumPrestitiAttivi() {

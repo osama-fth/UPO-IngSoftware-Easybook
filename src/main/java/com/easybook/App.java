@@ -17,14 +17,6 @@ public class App extends Application {
 
     private static Scene scene;
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("EasyBook - Gestionale Biblioteca");
-        stage.show();
-    }
-
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -36,5 +28,13 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("login"), 800, 600);
+        stage.setScene(scene);
+        stage.setTitle("EasyBook - Gestionale Biblioteca");
+        stage.show();
     }
 }

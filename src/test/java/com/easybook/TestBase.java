@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.stream.Collectors;
@@ -45,7 +46,11 @@ public class TestBase {
         if (is == null) {
             throw new RuntimeException("Impossibile trovare il file: DDL.sql");
         }
-        return new BufferedReader(new InputStreamReader(is))
-                .lines().collect(Collectors.joining("\n"));
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+            return reader.lines().collect(Collectors.joining("\n"));
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante la lettura del file DDL.sql", e);
+        }
     }
 }

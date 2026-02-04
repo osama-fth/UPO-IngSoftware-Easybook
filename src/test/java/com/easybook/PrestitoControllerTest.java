@@ -1,8 +1,8 @@
 package com.easybook;
 
+import com.easybook.controller.CatalogoController;
 import com.easybook.controller.PrestitoController;
 import com.easybook.controller.UtenteController;
-import com.easybook.controller.CatalogoController;
 import com.easybook.model.Libro;
 import com.easybook.model.StatoUtente;
 import com.easybook.model.Utente;

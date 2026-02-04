@@ -7,21 +7,31 @@ package com.easybook.model;
  */
 
 public class Sanzione {
+    private int id;
     private int idprestito;
     private double importo;
-    private int pagata;
+    private boolean pagata;
 
-    public Sanzione(int idprestito, double importo){
-        this.idprestito=idprestito;
-        this.importo=importo;
-        this.pagata=0;
-    }
-    public Sanzione(int idprestito, double importo, int pagata){
-        this.idprestito=idprestito;
-        this.importo=importo;
-        this.pagata=pagata;
+    public Sanzione(int idprestito, double importo) {
+        this.idprestito = idprestito;
+        this.importo = importo;
+        this.pagata = false;
     }
 
+    public Sanzione(int id, int idprestito, double importo, boolean pagata) {
+        this.id = id;
+        this.idprestito = idprestito;
+        this.importo = importo;
+        this.pagata = pagata;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public double getImporto() {
         return importo;
@@ -31,11 +41,11 @@ public class Sanzione {
         this.importo = importo;
     }
 
-    public int getPagata() {
+    public boolean isPagata() {
         return pagata;
     }
 
-    public void setPagata(int pagata) {
+    public void setPagata(boolean pagata) {
         this.pagata = pagata;
     }
 
@@ -47,4 +57,3 @@ public class Sanzione {
         this.idprestito = idprestito;
     }
 }
-

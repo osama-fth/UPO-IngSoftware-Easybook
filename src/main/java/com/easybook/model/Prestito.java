@@ -7,7 +7,6 @@ import java.time.LocalDate;
  *
  * @author Bellotti Lorenzo 20054630
  */
-
 public class Prestito {
     private int id;
     private Utente utente;
@@ -16,6 +15,7 @@ public class Prestito {
     private LocalDate dataScadenza;
     private LocalDate dataRestituzione;
 
+    // Costruttore base per nuovo prestito (calcola automaticamente le date)
     public Prestito(Utente utente, Libro libro) {
         this.utente = utente;
         this.libro = libro;
@@ -24,8 +24,19 @@ public class Prestito {
         this.dataRestituzione = null;
     }
 
+    // Costruttore per test e casi speciali (date personalizzate, senza id)
+    public Prestito(Utente utente, Libro libro, LocalDate dataInizio, LocalDate dataScadenza,
+                    LocalDate dataRestituzione) {
+        this.utente = utente;
+        this.libro = libro;
+        this.dataInizio = dataInizio;
+        this.dataScadenza = dataScadenza;
+        this.dataRestituzione = dataRestituzione;
+    }
+
+    // Costruttore completo per lettura da DB
     public Prestito(int id, Utente utente, Libro libro, LocalDate dataInizio, LocalDate dataScadenza,
-            LocalDate dataRestituzione) {
+                    LocalDate dataRestituzione) {
         this.id = id;
         this.utente = utente;
         this.libro = libro;
