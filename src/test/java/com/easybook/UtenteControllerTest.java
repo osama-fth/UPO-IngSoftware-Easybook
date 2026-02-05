@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test per il controller del registro utenti (UC1).
+ *
  * @author Foutih Osama 20054809
  */
 class UtenteControllerTest extends TestBase {
@@ -18,8 +20,8 @@ class UtenteControllerTest extends TestBase {
     @Override
     @BeforeEach
     public void setUp() throws Exception {
-        super.setUp(); // Inizializza il DB in memoria
-        controller = new UtenteController(); // Crea il controller DOPO il setup del DB
+        super.setUp();
+        controller = new UtenteController();
     }
 
     @Test

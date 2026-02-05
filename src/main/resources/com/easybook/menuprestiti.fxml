@@ -31,23 +31,26 @@
     <!-- Form Nuovo Prestito -->
     <GridPane hgap="10" vgap="10">
         <Label text="CF Utente:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="cmbCfUtente" promptText="Seleziona utente..." prefWidth="200" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="cmbCfUtente" promptText="Seleziona utente..." prefWidth="200" GridPane.rowIndex="0"
+                  GridPane.columnIndex="1"/>
 
         <Label text="ISBN Libro:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-        <ComboBox fx:id="cmbIsbnLibro" promptText="Seleziona libro..." prefWidth="250" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-        
+        <ComboBox fx:id="cmbIsbnLibro" promptText="Seleziona libro..." prefWidth="250" GridPane.rowIndex="0"
+                  GridPane.columnIndex="3"/>
+
         <Label text="Data Prestito:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <DatePicker fx:id="datePrestito" promptText="Data prestito" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <DatePicker fx:id="datePrestito" promptText="Data prestito" prefWidth="150" GridPane.rowIndex="1"
+                    GridPane.columnIndex="1"/>
     </GridPane>
 
     <!-- Bottoni Azione -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Registra Nuovo Prestito" onAction="#handleRegistraPrestito" 
+        <Button text="Registra Nuovo Prestito" onAction="#handleRegistraPrestito"
                 style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
-        <Button text="Registra Restituzione" onAction="#handleRestituzione" 
+        <Button text="Registra Restituzione" onAction="#handleRestituzione"
                 style="-fx-base: #2196F3; -fx-text-fill: white;"/>
         <Separator orientation="VERTICAL"/>
-        <Button text="Gestione Sanzioni" onAction="#vaiASanzioni" 
+        <Button text="Gestione Sanzioni" onAction="#vaiASanzioni"
                 style="-fx-base: #f44336; -fx-text-fill: white;"/>
     </HBox>
 

@@ -52,56 +52,6 @@ public class PrestitoDAO {
         }
     }
 
-    public List<Prestito> findByUtente(String cfUtente) {
-        List<Prestito> prestiti = new ArrayList<>();
-        String sql = "SELECT p.*, u.nome as u_nome, u.cognome as u_cognome, u.stato as u_stato, u.num_prestiti_attivi, "
-                +
-                "l.titolo, l.autore, l.copie_totali, l.copie_disponibili " +
-                "FROM Prestito p " +
-                "JOIN Utente u ON p.utente_cf = u.cf " +
-                "JOIN Libro l ON p.libro_isbn = l.isbn " +
-                "WHERE p.utente_cf = ?";
-        try {
-            Connection conn = DatabaseManager.getInstance().getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, cfUtente);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                prestiti.add(creaPrestito(rs));
-            }
-            rs.close();
-            pstmt.close();
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore DAO durante la ricerca dei prestiti per utente: " + e.getMessage(), e);
-        }
-        return prestiti;
-    }
-
-    public List<Prestito> findByLibro(String isbnLibro) {
-        List<Prestito> prestiti = new ArrayList<>();
-        String sql = "SELECT p.*, u.nome as u_nome, u.cognome as u_cognome, u.stato as u_stato, u.num_prestiti_attivi, "
-                +
-                "l.titolo, l.autore, l.copie_totali, l.copie_disponibili " +
-                "FROM Prestito p " +
-                "JOIN Utente u ON p.utente_cf = u.cf " +
-                "JOIN Libro l ON p.libro_isbn = l.isbn " +
-                "WHERE p.libro_isbn = ?";
-        try {
-            Connection conn = DatabaseManager.getInstance().getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, isbnLibro);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                prestiti.add(creaPrestito(rs));
-            }
-            rs.close();
-            pstmt.close();
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore DAO durante la ricerca dei prestiti per libro: " + e.getMessage(), e);
-        }
-        return prestiti;
-    }
-
     public List<Prestito> findAll() {
         List<Prestito> prestiti = new ArrayList<>();
         String sql = "SELECT p.*, u.nome as u_nome, u.cognome as u_cognome, u.stato as u_stato, u.num_prestiti_attivi, "
@@ -137,19 +87,6 @@ public class PrestitoDAO {
             pstmt.close();
         } catch (SQLException e) {
             throw new RuntimeException("Errore DAO durante l'aggiornamento del prestito: " + e.getMessage(), e);
-        }
-    }
-
-    public void delete(int id) {
-        String sql = "DELETE FROM Prestito WHERE id = ?";
-        try {
-            Connection conn = DatabaseManager.getInstance().getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-            pstmt.close();
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore DAO durante l'eliminazione del prestito: " + e.getMessage(), e);
         }
     }
 
@@ -197,7 +134,6 @@ public class PrestitoDAO {
         String dataRestStr = rs.getString("data_restituzione");
         LocalDate dataRestituzione = dataRestStr != null ? LocalDate.parse(dataRestStr) : null;
 
-        Prestito p = new Prestito(rs.getInt("id"), utente, libro, dataInizio, dataScadenza, dataRestituzione);
-        return p;
+        return new Prestito(rs.getInt("id"), utente, libro, dataInizio, dataScadenza, dataRestituzione);
     }
 }

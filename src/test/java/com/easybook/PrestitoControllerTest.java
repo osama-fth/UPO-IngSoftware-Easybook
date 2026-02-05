@@ -14,6 +14,8 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test per il controller del prestito (UC3&UC4).
+ *
  * @author Lorenzo Bellotti 20054630
  */
 class PrestitoControllerTest extends TestBase {
@@ -26,7 +28,7 @@ class PrestitoControllerTest extends TestBase {
     @Override
     @BeforeEach
     public void setUp() throws Exception {
-        super.setUp(); // Inizializza il DB in memoria PRIMA
+        super.setUp();
         prestitoController = new PrestitoController();
         utenteController = new UtenteController();
         catalogoController = new CatalogoController();

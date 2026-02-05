@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test di integrazione per il controller del catalogo libri (UC1).
+ * Test per il controller del catalogo libri (UC1).
  *
  * @author Foutih Osama 20054809
  */
@@ -19,8 +19,8 @@ class CatalogoControllerTest extends TestBase {
     @Override
     @BeforeEach
     public void setUp() throws Exception {
-        super.setUp(); // Inizializza il DB in memoria
-        controller = new CatalogoController(); // Crea il controller DOPO il setup del DB
+        super.setUp();
+        controller = new CatalogoController();
     }
 
     @Test

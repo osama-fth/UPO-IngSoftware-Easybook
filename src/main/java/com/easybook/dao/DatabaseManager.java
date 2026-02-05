@@ -15,7 +15,6 @@ public class DatabaseManager {
     private String url = "jdbc:sqlite:easybook.db";
 
     private DatabaseManager() {
-        // Costruttore privato per singleton
     }
 
     private DatabaseManager(String customUrl) {
@@ -46,20 +45,6 @@ public class DatabaseManager {
         // Crea nuova istanza con URL di test
         instance = new DatabaseManager(testUrl);
         instance.connetti();
-    }
-
-    /**
-     * Resetta l'istanza singleton (utile per i test)
-     */
-    public static synchronized void resetInstance() {
-        if (instance != null && instance.connection != null) {
-            try {
-                instance.connection.close();
-            } catch (SQLException e) {
-                // Ignora errori di chiusura
-            }
-        }
-        instance = null;
     }
 
     private void connetti() {

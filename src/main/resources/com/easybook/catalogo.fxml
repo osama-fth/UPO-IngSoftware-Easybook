@@ -2,9 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" spacing="15" xmlns="http://javafx.com/javafx/17"
       fx:controller="com.easybook.view.CatalogoViewController">
     <padding>
@@ -33,13 +31,16 @@
         <TextField fx:id="txtIsbn" promptText="ISBN" prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
         <Label text="Titolo:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-        <TextField fx:id="txtTitolo" promptText="Titolo" prefWidth="180" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+        <TextField fx:id="txtTitolo" promptText="Titolo" prefWidth="180" GridPane.rowIndex="0"
+                   GridPane.columnIndex="3"/>
 
         <Label text="Autore:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtAutore" promptText="Autore" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="txtAutore" promptText="Autore" prefWidth="150" GridPane.rowIndex="1"
+                   GridPane.columnIndex="1"/>
 
         <Label text="N. Copie:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-        <TextField fx:id="txtCopie" promptText="N. Copie" prefWidth="80" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+        <TextField fx:id="txtCopie" promptText="N. Copie" prefWidth="80" GridPane.rowIndex="1"
+                   GridPane.columnIndex="3"/>
     </GridPane>
 
     <!-- Bottoni Azione -->
