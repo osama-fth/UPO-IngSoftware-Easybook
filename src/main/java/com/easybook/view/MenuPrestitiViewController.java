@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +52,8 @@ public class MenuPrestitiViewController {
     private ComboBox<String> cmbCfUtente;
     @FXML
     private ComboBox<String> cmbIsbnLibro;
+    @FXML
+    private DatePicker datePrestito;
     @FXML
     private Label lblMessaggio;
 
@@ -101,6 +104,9 @@ public class MenuPrestitiViewController {
         // Popola le ComboBox
         caricaUtentiELibri();
 
+        // Inizializza DatePicker con data odierna
+        datePrestito.setValue(LocalDate.now());
+
         aggiornaTabella();
     }
 
@@ -111,9 +117,15 @@ public class MenuPrestitiViewController {
 
             String cf = cmbCfUtente.getValue();
             String isbn = cmbIsbnLibro.getValue();
+            LocalDate dataInizio = datePrestito.getValue();
 
             if (cf == null || isbn == null || cf.isEmpty() || isbn.isEmpty()) {
                 mostraErrore("Seleziona CF Utente e ISBN Libro.");
+                return;
+            }
+
+            if (dataInizio == null) {
+                mostraErrore("Seleziona una data per il prestito.");
                 return;
             }
 
@@ -122,7 +134,7 @@ public class MenuPrestitiViewController {
             // Estrai solo l'ISBN (prima parte prima del trattino)
             isbn = isbn.split(" - ")[0].trim();
 
-            prestitoController.registraPrestito(cf, isbn);
+            prestitoController.registraPrestito(cf, isbn, dataInizio);
 
             mostraSuccesso("Prestito registrato con successo!");
             svuotaCampi();
@@ -185,6 +197,7 @@ public class MenuPrestitiViewController {
     private void svuotaCampi() {
         cmbCfUtente.setValue(null);
         cmbIsbnLibro.setValue(null);
+        datePrestito.setValue(LocalDate.now());
         tabellaPrestiti.getSelectionModel().clearSelection();
     }
 

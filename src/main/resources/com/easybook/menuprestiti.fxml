@@ -35,6 +35,9 @@
 
         <Label text="ISBN Libro:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
         <ComboBox fx:id="cmbIsbnLibro" promptText="Seleziona libro..." prefWidth="250" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+        
+        <Label text="Data Prestito:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="datePrestito" promptText="Data prestito" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     </GridPane>
 
     <!-- Bottoni Azione -->
