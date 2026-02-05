@@ -23,6 +23,9 @@
             <TableColumn fx:id="colDataRestituzione" text="Restituito Il" prefWidth="100"/>
             <TableColumn fx:id="colStato" text="Stato" prefWidth="80"/>
         </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
     </TableView>
 
     <!-- Form Nuovo Prestito -->

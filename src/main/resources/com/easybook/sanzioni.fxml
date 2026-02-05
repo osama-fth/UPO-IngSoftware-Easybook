@@ -21,6 +21,9 @@
             <TableColumn fx:id="colImporto" text="Importo (€)" prefWidth="100"/>
             <TableColumn fx:id="colStato" text="Stato" prefWidth="100"/>
         </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
     </TableView>
 
     <!-- Bottoni Azione -->
