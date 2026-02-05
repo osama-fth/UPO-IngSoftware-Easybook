@@ -17,8 +17,8 @@ di una biblioteca.
 
 | Username         | Password    |
 |------------------|-------------|
-| osama.foutih     | password123 |
-| lorenzo.bellotti | password123 |
-| riccardo.negrini | password123 |
+| osama.foutih     | osama123    |
+| lorenzo.bellotti | lorenzo123  |
+| riccardo.negrini | riccardo123 |
 
 ###### Note: IDE utilizzato IntelliJ IDEA
