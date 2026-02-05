@@ -2,25 +2,52 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17"
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="15" xmlns="http://javafx.com/javafx/17"
       fx:controller="com.easybook.view.MenuPrestitiViewController">
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Menu Gestione Prestiti" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-    <Label text="Seleziona un'operazione" style="-fx-font-size: 14px;"/>
+    <Label text="Gestione Prestiti" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-    <Button text="Registra Nuovo Prestito" onAction="#vaiARegistraPrestito" prefWidth="250" prefHeight="40"/>
+    <!-- Tabella Prestiti -->
+    <TableView fx:id="tabellaPrestiti" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colUtente" text="Utente (CF)" prefWidth="150"/>
+            <TableColumn fx:id="colLibro" text="Libro" prefWidth="200"/>
+            <TableColumn fx:id="colDataInizio" text="Data Presa" prefWidth="100"/>
+            <TableColumn fx:id="colDataScadenza" text="Scadenza" prefWidth="100"/>
+            <TableColumn fx:id="colDataRestituzione" text="Restituito Il" prefWidth="100"/>
+            <TableColumn fx:id="colStato" text="Stato" prefWidth="80"/>
+        </columns>
+    </TableView>
 
-    <Button text="Registra Restituzione" onAction="#vaiARestituzione" prefWidth="250" prefHeight="40"/>
+    <!-- Form Nuovo Prestito -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="CF Utente:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCfUtente" promptText="Es. RSSMRA..." prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <Button text="Vedi Lista Prestiti Attivi" onAction="#vaiAListaPrestiti" prefWidth="250" prefHeight="40"/>
+        <Label text="ISBN Libro:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtIsbnLibro" promptText="Es. 978-..." prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+    </GridPane>
 
-    <Label minHeight="10"/>
+    <!-- Bottoni Azione -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Registra Nuovo Prestito" onAction="#handleRegistraPrestito" 
+                style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Registra Restituzione" onAction="#handleRestituzione" 
+                style="-fx-base: #2196F3; -fx-text-fill: white;"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="Gestione Sanzioni" onAction="#vaiASanzioni" 
+                style="-fx-base: #f44336; -fx-text-fill: white;"/>
+    </HBox>
 
-    <Button text="Indietro (Home)" onAction="#tornaHome" prefWidth="150"/>
-
+    <!-- Navigazione e Messaggi -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="← Torna alla Home" onAction="#tornaHome"/>
+        <Label fx:id="lblMessaggio" text="" style="-fx-font-weight: bold;"/>
+    </HBox>
 </VBox>
