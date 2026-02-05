@@ -7,6 +7,7 @@ import com.easybook.model.Libro;
 import com.easybook.model.Prestito;
 import com.easybook.model.Utente;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -27,6 +28,10 @@ public class PrestitoController {
     }
 
     public void registraPrestito(String cfUtente, String isbnLibro) {
+        registraPrestito(cfUtente, isbnLibro, LocalDate.now());
+    }
+
+    public void registraPrestito(String cfUtente, String isbnLibro, LocalDate dataInizio) {
         Utente utente = utenteDAO.findByCf(cfUtente);
         if (utente == null) {
             throw new IllegalArgumentException("Utente con CF " + cfUtente + " non trovato.");
@@ -49,7 +54,8 @@ public class PrestitoController {
             throw new IllegalArgumentException("Nessuna copia disponibile per il libro con ISBN " + isbnLibro + ".");
         }
 
-        Prestito prestito = new Prestito(utente, libro);
+        LocalDate dataScadenza = dataInizio.plusDays(30);
+        Prestito prestito = new Prestito(utente, libro, dataInizio, dataScadenza, null);
         prestitoDAO.insert(prestito);
         libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() - 1);
         utente.setNumPrestitiAttivi(utente.getNumPrestitiAttivi() + 1);

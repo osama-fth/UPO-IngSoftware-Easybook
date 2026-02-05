@@ -4,37 +4,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="10" xmlns="http://javafx.com/javafx/17"
+<?import javafx.scene.layout.GridPane?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="15" xmlns="http://javafx.com/javafx/17"
       fx:controller="com.easybook.view.CatalogoViewController">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Gestione Catalogo" style="-fx-font-size: 20px;"/>
+    <Label text="Gestione Catalogo" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
     <!-- Tabella Libri -->
     <TableView fx:id="tabellaLibri" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="colIsbn" text="ISBN"/>
-            <TableColumn fx:id="colTitolo" text="Titolo"/>
-            <TableColumn fx:id="colAutore" text="Autore"/>
-            <TableColumn fx:id="colCopie" text="Copie"/>
+            <TableColumn fx:id="colIsbn" text="ISBN" prefWidth="120"/>
+            <TableColumn fx:id="colTitolo" text="Titolo" prefWidth="180"/>
+            <TableColumn fx:id="colAutore" text="Autore" prefWidth="150"/>
+            <TableColumn fx:id="colCopieTotali" text="Copie Totali" prefWidth="100"/>
+            <TableColumn fx:id="colCopieDisponibili" text="Copie Disponibili" prefWidth="120"/>
         </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
     </TableView>
 
-    <!-- Form Aggiunta -->
-    <HBox spacing="10">
-        <TextField fx:id="txtIsbn" promptText="ISBN"/>
-        <TextField fx:id="txtTitolo" promptText="Titolo"/>
-        <TextField fx:id="txtAutore" promptText="Autore"/>
-        <TextField fx:id="txtCopie" promptText="N. Copie" prefWidth="80"/>
-        <Button text="Aggiungi" onAction="#handleAggiungi"/>
-    </HBox>
+    <!-- Form Inserimento/Modifica -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="ISBN:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIsbn" promptText="ISBN" prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <HBox spacing="10">
+        <Label text="Titolo:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtTitolo" promptText="Titolo" prefWidth="180" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Autore:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAutore" promptText="Autore" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="N. Copie:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtCopie" promptText="N. Copie" prefWidth="80" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+    </GridPane>
+
+    <!-- Bottoni Azione -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Aggiungi Nuovo" onAction="#handleAggiungi" style="-fx-base: #4CAF50;"/>
+        <Button text="Modifica Selezionato" onAction="#handleModifica"/>
         <Button text="Rimuovi Selezionato" onAction="#handleRimuovi" style="-fx-text-fill: red;"/>
-        <Button text="Indietro" onAction="#tornaHome"/>
     </HBox>
 
-    <Label fx:id="lblMessaggio"/>
+    <!-- Navigazione e Messaggi -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="← Torna alla Home" onAction="#tornaHome"/>
+        <Label fx:id="lblMessaggio" text="" style="-fx-font-weight: bold;"/>
+    </HBox>
 </VBox>

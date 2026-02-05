@@ -30,7 +30,9 @@ public class CatalogoViewController {
     @FXML
     private TableColumn<Libro, String> colAutore;
     @FXML
-    private TableColumn<Libro, Integer> colCopie;
+    private TableColumn<Libro, Integer> colCopieTotali;
+    @FXML
+    private TableColumn<Libro, Integer> colCopieDisponibili;
 
     @FXML
     private TextField txtIsbn;
@@ -55,9 +57,18 @@ public class CatalogoViewController {
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
         colAutore.setCellValueFactory(new PropertyValueFactory<>("autore"));
-        colCopie.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili")); // Mostriamo le disponibili
+        colCopieTotali.setCellValueFactory(new PropertyValueFactory<>("copieTotali"));
+        colCopieDisponibili.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili"));
 
         tabellaLibri.setItems(listaLibri);
+
+        // Listener per popolare i campi quando si seleziona una riga
+        tabellaLibri.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSelection, newSelection) -> {
+                    if (newSelection != null) {
+                        popolaCampi(newSelection);
+                    }
+                });
 
         aggiornaTabella();
     }
@@ -90,12 +101,67 @@ public class CatalogoViewController {
                     txtTitolo.getText(),
                     txtAutore.getText(),
                     copie,
-                    copie
-            );
+                    copie);
 
             catalogoController.aggiungiLibro(nuovoLibro);
 
             mostraSuccesso("Libro inserito correttamente.");
+            svuotaCampi();
+            aggiornaTabella();
+
+        } catch (IllegalArgumentException e) {
+            mostraErrore(e.getMessage());
+        } catch (Exception e) {
+            mostraErrore("Errore imprevisto: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gestisce il click sul bottone "Modifica Selezionato".
+     */
+    @FXML
+    private void handleModifica() {
+        Libro selezionato = tabellaLibri.getSelectionModel().getSelectedItem();
+        if (selezionato == null) {
+            mostraErrore("Seleziona un libro dalla tabella per modificarlo.");
+            return;
+        }
+
+        try {
+            lblMessaggio.setText("");
+
+            if (txtTitolo.getText().isEmpty() || txtAutore.getText().isEmpty() || txtCopie.getText().isEmpty()) {
+                mostraErrore("Compilare tutti i campi!");
+                return;
+            }
+
+            int copie;
+            try {
+                copie = Integer.parseInt(txtCopie.getText());
+            } catch (NumberFormatException e) {
+                mostraErrore("Il numero copie deve essere un numero intero.");
+                return;
+            }
+
+            // Calcola copie disponibili mantenendo la differenza
+            int copiePrestitate = selezionato.getCopieTotali() - selezionato.getCopieDisponibili();
+            int nuoveCopieDisponibili = copie - copiePrestitate;
+
+            if (nuoveCopieDisponibili < 0) {
+                mostraErrore("Non puoi ridurre le copie totali sotto quelle in prestito (" + copiePrestitate + ").");
+                return;
+            }
+
+            Libro modificato = new Libro(
+                    selezionato.getIsbn(),
+                    txtTitolo.getText(),
+                    txtAutore.getText(),
+                    copie,
+                    nuoveCopieDisponibili);
+
+            catalogoController.modificaLibro(modificato);
+
+            mostraSuccesso("Libro modificato correttamente.");
             svuotaCampi();
             aggiornaTabella();
 
@@ -122,6 +188,7 @@ public class CatalogoViewController {
             catalogoController.rimuoviLibro(selezionato.getIsbn());
 
             mostraSuccesso("Libro rimosso.");
+            svuotaCampi();
             aggiornaTabella();
 
         } catch (IllegalArgumentException e) {
@@ -139,11 +206,19 @@ public class CatalogoViewController {
         listaLibri.addAll(catalogoController.getTuttiILibri());
     }
 
+    private void popolaCampi(Libro libro) {
+        txtIsbn.setText(libro.getIsbn());
+        txtTitolo.setText(libro.getTitolo());
+        txtAutore.setText(libro.getAutore());
+        txtCopie.setText(String.valueOf(libro.getCopieTotali()));
+    }
+
     private void svuotaCampi() {
         txtIsbn.clear();
         txtTitolo.clear();
         txtAutore.clear();
         txtCopie.clear();
+        tabellaLibri.getSelectionModel().clearSelection();
     }
 
     private void mostraErrore(String msg) {
