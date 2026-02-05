@@ -11,9 +11,10 @@
 
     <!-- Header con titolo e logout -->
     <top>
-        <HBox alignment="CENTER_RIGHT" spacing="10">
+        <HBox alignment="CENTER_LEFT" spacing="10">
             <Label fx:id="lblBenvenuto" text="Benvenuto in EasyBook" 
-                   style="-fx-font-size: 24px; -fx-font-weight: bold;" HBox.hgrow="ALWAYS"/>
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
             <Button text="Logout" onAction="#logout" prefWidth="100" 
                     style="-fx-base: #f44336; -fx-text-fill: white;"/>
         </HBox>

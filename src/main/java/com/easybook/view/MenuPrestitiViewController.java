@@ -1,19 +1,23 @@
 package com.easybook.view;
 
 import com.easybook.App;
+import com.easybook.controller.CatalogoController;
 import com.easybook.controller.PrestitoController;
 import com.easybook.controller.RestituzioneController;
+import com.easybook.controller.UtenteController;
+import com.easybook.model.Libro;
 import com.easybook.model.Prestito;
+import com.easybook.model.Utente;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -44,20 +48,24 @@ public class MenuPrestitiViewController {
     private TableColumn<Prestito, String> colStato;
 
     @FXML
-    private TextField txtCfUtente;
+    private ComboBox<String> cmbCfUtente;
     @FXML
-    private TextField txtIsbnLibro;
+    private ComboBox<String> cmbIsbnLibro;
     @FXML
     private Label lblMessaggio;
 
     private PrestitoController prestitoController;
     private RestituzioneController restituzioneController;
+    private UtenteController utenteController;
+    private CatalogoController catalogoController;
     private ObservableList<Prestito> listaPrestiti;
 
     @FXML
     public void initialize() {
         prestitoController = new PrestitoController();
         restituzioneController = new RestituzioneController();
+        utenteController = new UtenteController();
+        catalogoController = new CatalogoController();
         listaPrestiti = FXCollections.observableArrayList();
 
         // Configurazione colonne
@@ -89,6 +97,10 @@ public class MenuPrestitiViewController {
         });
 
         tabellaPrestiti.setItems(listaPrestiti);
+
+        // Popola le ComboBox
+        caricaUtentiELibri();
+
         aggiornaTabella();
     }
 
@@ -97,13 +109,18 @@ public class MenuPrestitiViewController {
         try {
             pulisciMessaggio();
 
-            String cf = txtCfUtente.getText().trim();
-            String isbn = txtIsbnLibro.getText().trim();
+            String cf = cmbCfUtente.getValue();
+            String isbn = cmbIsbnLibro.getValue();
 
-            if (cf.isEmpty() || isbn.isEmpty()) {
-                mostraErrore("Inserisci CF Utente e ISBN Libro.");
+            if (cf == null || isbn == null || cf.isEmpty() || isbn.isEmpty()) {
+                mostraErrore("Seleziona CF Utente e ISBN Libro.");
                 return;
             }
+
+            // Estrai solo il CF (prima parte prima del trattino)
+            cf = cf.split(" - ")[0].trim();
+            // Estrai solo l'ISBN (prima parte prima del trattino)
+            isbn = isbn.split(" - ")[0].trim();
 
             prestitoController.registraPrestito(cf, isbn);
 
@@ -142,6 +159,7 @@ public class MenuPrestitiViewController {
                 mostraSuccesso("Restituzione registrata con successo!");
             }
 
+            tabellaPrestiti.getSelectionModel().clearSelection();
             aggiornaTabella();
         } catch (IllegalArgumentException e) {
             mostraErrore(e.getMessage());
@@ -161,12 +179,31 @@ public class MenuPrestitiViewController {
     private void aggiornaTabella() {
         listaPrestiti.clear();
         listaPrestiti.addAll(prestitoController.getTuttiIPrestiti());
+        caricaUtentiELibri(); // Aggiorna anche le ComboBox
     }
 
     private void svuotaCampi() {
-        txtCfUtente.clear();
-        txtIsbnLibro.clear();
+        cmbCfUtente.setValue(null);
+        cmbIsbnLibro.setValue(null);
         tabellaPrestiti.getSelectionModel().clearSelection();
+    }
+
+    private void caricaUtentiELibri() {
+        // Popola ComboBox Utenti
+        ObservableList<String> listaUtenti = FXCollections.observableArrayList();
+        for (Utente u : utenteController.getElencoUtenti()) {
+            // Formato: CF - Nome Cognome (Stato)
+            listaUtenti.add(u.getCf() + " - " + u.getNome() + " " + u.getCognome());
+        }
+        cmbCfUtente.setItems(listaUtenti);
+
+        // Popola ComboBox Libri
+        ObservableList<String> listaLibri = FXCollections.observableArrayList();
+        for (Libro l : catalogoController.getTuttiILibri()) {
+            // Formato: ISBN - Titolo (Autore) [Copie disp./tot.]
+            listaLibri.add(l.getIsbn() + " - " + l.getTitolo() + " (" + l.getAutore() + ")");
+        }
+        cmbIsbnLibro.setItems(listaLibri);
     }
 
     private void pulisciMessaggio() {

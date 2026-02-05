@@ -119,6 +119,7 @@ public class SanzioniViewController {
             }
 
             mostraSuccesso("Sanzione segnata come pagata. Utente riattivato.");
+            tabellaSanzioni.getSelectionModel().clearSelection();
             aggiornaTabella();
 
         } catch (Exception e) {

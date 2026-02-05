@@ -70,8 +70,7 @@ public class UtentiViewController {
                     if (newSelection != null) {
                         popolaCampi(newSelection);
                     }
-                }
-        );
+                });
 
         caricaDati();
     }
@@ -87,8 +86,7 @@ public class UtentiViewController {
                     txtNome.getText(),
                     txtCognome.getText(),
                     StatoUtente.ATTIVO,
-                    0
-            );
+                    0);
 
             utenteController.registraUtente(nuovo);
 
@@ -119,8 +117,7 @@ public class UtentiViewController {
                     txtNome.getText(),
                     txtCognome.getText(),
                     StatoUtente.valueOf(selezionato.getStato()),
-                    selezionato.getNumPrestitiAttivi()
-            );
+                    selezionato.getNumPrestitiAttivi());
 
             utenteController.modificaUtente(modificato);
 
@@ -180,6 +177,7 @@ public class UtentiViewController {
                 utenteController.riattivaUtente(selezionato.getCf());
                 mostraSuccesso("Utente RIATTIVATO.");
             }
+            svuotaCampi();
             caricaDati();
         } catch (IllegalArgumentException e) {
             mostraErrore(e.getMessage());
@@ -206,6 +204,7 @@ public class UtentiViewController {
         txtCf.clear();
         txtNome.clear();
         txtCognome.clear();
+        tabellaUtenti.getSelectionModel().clearSelection();
     }
 
     private void mostraErrore(String msg) {
