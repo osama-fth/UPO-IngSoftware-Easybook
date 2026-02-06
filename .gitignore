@@ -1,1 +1,29 @@
+# --- BUILD & COMPILATION ---
+target/
+*.class
+*.log
+
+# --- INTELLIJ IDEA ---
+.idea/
+*.iml
+out/
+gen/
+
+# --- VS CODE ---
+.vscode/
+
+# --- SISTEMA OPERATIVO ---
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# --- FILE TEMPORANEI / BACKUP ---
+*.swp
+*.bak
+*~
+~$*.docx
