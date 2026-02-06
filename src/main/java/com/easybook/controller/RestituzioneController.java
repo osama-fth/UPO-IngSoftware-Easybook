@@ -8,7 +8,6 @@ import com.easybook.model.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 /**
  * Controller per la gestione della restituzione (UC5) e sanzioni (UC6).
@@ -48,19 +47,15 @@ public class RestituzioneController {
         LocalDate oggi = LocalDate.now();
         prestito.setDataRestituzione(oggi);
 
-        // Aggiorna il prestito nel database
         prestitoDAO.update(prestito);
 
-        // Incrementa le copie disponibili del libro
         Libro libro = libroDAO.findByIsbn(prestito.getLibro().getIsbn());
         libroDAO.updateCopie(libro.getIsbn(), libro.getCopieDisponibili() + 1);
 
-        // Decrementa il numero di prestiti attivi dell'utente
         Utente utente = utenteDAO.findByCf(prestito.getUtente().getCf());
         utente.setNumPrestitiAttivi(Math.max(0, utente.getNumPrestitiAttivi() - 1));
         utenteDAO.update(utente);
 
-        // Verifica se c'è ritardo e applica eventuale sanzione (UC6)
         if (oggi.isAfter(prestito.getDataScadenza())) {
             applicaSanzione(prestito, oggi);
         }
@@ -73,19 +68,12 @@ public class RestituzioneController {
         long giorniRitardo = ChronoUnit.DAYS.between(prestito.getDataScadenza(), dataRestituzione);
         double importo = calcolaImportoSanzione(giorniRitardo);
 
-        // Crea e salva la sanzione
         Sanzione sanzione = new Sanzione(prestito.getId(), importo);
         sanzioneDAO.insert(sanzione);
 
-        // Sospende l'utente (blocca futuri prestiti)
         utenteDAO.updateStato(prestito.getUtente().getCf(), StatoUtente.SOSPESO);
     }
 
-    /**
-     * Calcola l'importo della sanzione in base ai giorni di ritardo.
-     * - Fino a 7 giorni: 10€ fissi
-     * - Dall'8° giorno: 10€ + 0.50€ per ogni giorno oltre il 7°
-     */
     public double calcolaImportoSanzione(long giorniRitardo) {
         if (giorniRitardo <= 0) {
             return 0.0;
@@ -97,25 +85,10 @@ public class RestituzioneController {
         return SANZIONE_BASE + (giorniExtra * INCREMENTO_GIORNALIERO);
     }
 
-    /**
-     * Restituisce tutti i prestiti attivi (non ancora restituiti).
-     */
-    public List<Prestito> getPrestitiAttivi() {
-        return prestitoDAO.findAll().stream()
-                .filter(p -> p.getDataRestituzione() == null)
-                .toList();
-    }
-
-    /**
-     * Verifica se un prestito ha una sanzione associata.
-     */
     public boolean hasSanzione(int idPrestito) {
         return sanzioneDAO.findByPrestitoId(idPrestito) != null;
     }
 
-    /**
-     * Recupera la sanzione associata a un prestito.
-     */
     public Sanzione getSanzione(int idPrestito) {
         return sanzioneDAO.findByPrestitoId(idPrestito);
     }

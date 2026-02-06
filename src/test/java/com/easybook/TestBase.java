@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.stream.Collectors;
 
 /**
+ * Classe per connettersi a database temporareo per i test
+ *
  * @author Foutih Osama 20054809
  * @author Lorenzo Bellotti 20054630
  * @author Riccardo Negrini 20054675
@@ -24,8 +26,6 @@ public class TestBase {
         String testUrl = "jdbc:sqlite::memory:";
         DatabaseManager.setTestInstance(testUrl);
 
-        // NON usare try-with-resources sulla connessione!
-        // Con SQLite in memoria, chiudere la connessione distrugge il DB
         Connection conn = DatabaseManager.getInstance().getConnection();
         Statement stmt = conn.createStatement();
 
@@ -38,7 +38,7 @@ public class TestBase {
             }
         }
 
-        stmt.close(); // Chiudi solo lo statement, NON la connessione
+        stmt.close();
     }
 
     private String loadResourceFile() {

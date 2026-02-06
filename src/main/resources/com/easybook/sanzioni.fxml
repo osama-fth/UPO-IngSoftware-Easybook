@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" spacing="15" xmlns="http://javafx.com/javafx/17"
       fx:controller="com.easybook.view.SanzioniViewController">
     <padding>
@@ -28,7 +29,7 @@
 
     <!-- Bottoni Azione -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Segna come Pagata" onAction="#handlePagata" 
+        <Button text="Segna come Pagata" onAction="#handlePagata"
                 style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
         <Button text="Aggiorna Lista" onAction="#aggiornaTabella"/>
     </HBox>

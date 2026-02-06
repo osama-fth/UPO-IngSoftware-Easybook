@@ -6,7 +6,6 @@ import com.easybook.model.Bibliotecario;
 /**
  * Controller per la gestione dell'autenticazione del bibliotecario.
  *
- * @author Foutih Osama 20054809
  * @author Bellotti Lorenzo 20054630
  * @author Negrini Riccardo 20054675
  */
