@@ -1,11 +1,10 @@
 # EasyBook - Gestionale per Biblioteca
 
-## Descrizione
+## Descrizione del Progetto
 
-Applicazione per la gestione del catalogo libri, della anagrafica degli utenti iscritti, dei prestiti e delle sanzioni
-di una biblioteca.
+Applicazione desktop in Java per la gestione di una biblioteca. Permette di gestire il catalogo libri, l'anagrafica degli utenti iscritti, i prestiti e le relative sanzioni.
 
-## Membri del gruppo
+## Membri del Gruppo
 
 | Nome             | Matricola | Email                       | Data Esame |
 |------------------|-----------|-----------------------------|------------|
@@ -13,7 +12,7 @@ di una biblioteca.
 | Lorenzo Bellotti | 20054630  | 20054630@studenti.uniupo.it | 18/02/2026 |
 | Riccardo Negrini | 20054675  | 20054675@studenti.uniupo.it | 18/02/2026 |
 
-### Credenziali per usare interfaccia grafica
+## Credenziali di Accesso
 
 | Username         | Password    |
 |------------------|-------------|
@@ -21,4 +20,6 @@ di una biblioteca.
 | lorenzo.bellotti | lorenzo123  |
 | riccardo.negrini | riccardo123 |
 
-###### Note: IDE utilizzato IntelliJ IDEA
+## Note
+
+- IDE utilizzato: IntelliJ IDEA
