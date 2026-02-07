@@ -21,8 +21,7 @@ import java.io.IOException;
 
 /**
  * Controller grafico per la schermata Gestione Sanzioni.
- *
- * @author Foutih Osama 20054809
+ * 
  * @author Riccardo Negrini 20054675
  */
 public class SanzioniViewController {
