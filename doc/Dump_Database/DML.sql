@@ -79,6 +79,4 @@ VALUES (1, 'RSSMRA80A01H501U', '9788806218034', '2025-09-01', '2025-10-01', '202
 -- 5. SANZIONI
 INSERT INTO Sanzione (id, prestito_id, importo, pagata)
 VALUES (1, 4, 10.00, 1),
-       (2, 5, 11.50, 1),
-       (3, 20, 15.50, 0),
-       (4, 21, 10.00, 0);
+       (2, 5, 11.50, 1);
