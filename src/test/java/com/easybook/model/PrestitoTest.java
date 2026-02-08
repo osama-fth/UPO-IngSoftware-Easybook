@@ -1,9 +1,5 @@
-package com.easybook;
+package com.easybook.model;
 
-import com.easybook.model.Libro;
-import com.easybook.model.Prestito;
-import com.easybook.model.StatoUtente;
-import com.easybook.model.Utente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

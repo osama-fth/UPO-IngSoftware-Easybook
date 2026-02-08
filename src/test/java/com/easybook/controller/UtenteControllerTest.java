@@ -1,6 +1,6 @@
-package com.easybook;
+package com.easybook.controller;
 
-import com.easybook.controller.UtenteController;
+import com.easybook.TestBase;
 import com.easybook.model.StatoUtente;
 import com.easybook.model.Utente;
 import org.junit.jupiter.api.BeforeEach;

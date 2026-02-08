@@ -1,6 +1,5 @@
-package com.easybook;
+package com.easybook.model;
 
-import com.easybook.model.Sanzione;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

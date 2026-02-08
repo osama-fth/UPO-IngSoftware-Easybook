@@ -1,6 +1,6 @@
-package com.easybook;
+package com.easybook.controller;
 
-import com.easybook.controller.CatalogoController;
+import com.easybook.TestBase;
 import com.easybook.model.Libro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

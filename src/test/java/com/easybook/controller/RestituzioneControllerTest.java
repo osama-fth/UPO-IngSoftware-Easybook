@@ -1,6 +1,6 @@
-package com.easybook;
+package com.easybook.controller;
 
-import com.easybook.controller.RestituzioneController;
+import com.easybook.TestBase;
 import com.easybook.dao.LibroDAO;
 import com.easybook.dao.PrestitoDAO;
 import com.easybook.dao.UtenteDAO;

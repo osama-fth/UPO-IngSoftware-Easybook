@@ -1,4 +1,4 @@
-package com.easybook;
+package com.easybook.controller;
 
 import com.easybook.dao.DatabaseManager;
 import org.junit.jupiter.api.Test;

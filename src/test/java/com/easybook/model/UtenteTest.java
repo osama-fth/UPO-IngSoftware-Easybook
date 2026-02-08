@@ -1,7 +1,5 @@
-package com.easybook;
+package com.easybook.model;
 
-import com.easybook.model.StatoUtente;
-import com.easybook.model.Utente;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
